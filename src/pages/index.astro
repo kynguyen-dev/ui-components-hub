@@ -1,17 +1,31 @@
 ---
-
+import MainLayout from '@/layouts/MainLayout.astro';
+import { Button } from '@/components/ui/button';
+import { ArrowRight, Github } from 'lucide-react';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout title="UI Components Hub | Home">
+  <section class="container flex flex-col items-center justify-center space-y-8 py-24 text-center md:py-32">
+    <div class="space-y-4">
+      <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
+        Build your next UI <br class="hidden sm:inline" />
+        with speed and elegance
+      </h1>
+      <p class="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
+        A curated collection of beautiful, accessible, and high-performance UI components for your Astro and React projects.
+      </p>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-4">
+      <Button asChild size="lg" class="gap-2">
+        <a href="/docs/installation">
+          Get Started <ArrowRight class="h-4 w-4" />
+        </a>
+      </Button>
+      <Button variant="outline" size="lg" class="gap-2" asChild>
+        <a href="https://github.com/kynguyen-dev/ui-components-hub" target="_blank">
+          <Github class="h-4 w-4" /> GitHub
+        </a>
+      </Button>
+    </div>
+  </section>
+</MainLayout>
