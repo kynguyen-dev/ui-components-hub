@@ -1,0 +1,95 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Layout, MousePointer2, CreditCard, Box, Type, Layers } from 'lucide-react';
+
+const categories = [
+  {
+    title: "Buttons",
+    description: "Highly customizable buttons for every use case.",
+    icon: MousePointer2,
+    count: 12,
+    href: "/docs/components/buttons"
+  },
+  {
+    title: "Cards",
+    description: "Versatile containers for content and actions.",
+    icon: CreditCard,
+    count: 8,
+    href: "/docs/components/cards"
+  },
+  {
+    title: "Hero Sections",
+    description: "Eye-catching initial sections for your landing pages.",
+    icon: Layout,
+    count: 5,
+    href: "/docs/components/heroes"
+  },
+  {
+    title: "Backgrounds",
+    description: "Animated and static backgrounds for your UI.",
+    icon: Box,
+    count: 10,
+    href: "/docs/components/backgrounds"
+  },
+  {
+    title: "Typography",
+    description: "Standardized text styles and components.",
+    icon: Type,
+    count: 6,
+    href: "/docs/components/typography"
+  },
+  {
+    title: "Layouts",
+    description: "Flexible grid and flexbox based layout systems.",
+    icon: Layers,
+    count: 4,
+    href: "/docs/components/layouts"
+  }
+];
+---
+
+<MainLayout title="Browse Components | UI Components Hub">
+  <div class="space-y-6">
+    <div class="space-y-2">
+      <h1 class="text-3xl font-bold tracking-tight">Component Catalog</h1>
+      <p class="text-muted-foreground">
+        Explore our curated collection of high-quality components.
+      </p>
+    </div>
+    
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {categories.map((category) => (
+        <a href={category.href} class="group">
+          <Card class="h-full transition-all group-hover:border-primary group-hover:shadow-md">
+            <CardHeader>
+              <div class="mb-2 w-fit rounded-lg bg-primary/10 p-2 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                <category.icon class="h-6 w-6" />
+              </div>
+              <CardTitle>{category.title}</CardTitle>
+              <CardDescription>{category.description}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div class="flex items-center text-sm text-muted-foreground">
+                <span class="font-medium">{category.count} components</span>
+              </div>
+            </CardContent>
+          </Card>
+        </a>
+      ))}
+    </div>
+    
+    <div class="mt-12 rounded-lg border bg-muted/40 p-8 text-center">
+      <h2 class="text-xl font-semibold">Missing something?</h2>
+      <p class="mt-2 text-muted-foreground">
+        We're constantly adding new components. Request a feature on GitHub.
+      </p>
+      <Button variant="outline" class="mt-4" asChild>
+        <a href="https://github.com/kynguyen-dev/ui-components-hub/issues" target="_blank">
+          Request Component
+        </a>
+      </Button>
+    </div>
+  </div>
+</MainLayout>

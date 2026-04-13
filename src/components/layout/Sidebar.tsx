@@ -10,6 +10,7 @@ const sidebarConfig = [
     items: [
       { title: "Introduction", href: "/docs" },
       { title: "Installation", href: "/docs/installation" },
+      { title: "Browse Components", href: "/components" },
     ],
   },
   {

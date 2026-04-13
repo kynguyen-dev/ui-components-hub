@@ -10,6 +10,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Sidebar } from "./Sidebar";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { cn } from "@/lib/utils";
 
 export function Header() {
@@ -74,11 +75,7 @@ export function Header() {
                 <span className="sr-only">GitHub</span>
               </a>
             </Button>
-            {/* Theme Toggle Placeholder */}
-            <Button variant="ghost" size="icon">
-              <div className="h-4 w-4 rounded-full border-2 border-primary border-t-transparent animate-spin" />
-              <span className="sr-only">Toggle theme</span>
-            </Button>
+            <ThemeToggle />
           </nav>
         </div>
       </div>
