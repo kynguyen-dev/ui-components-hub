@@ -1,0 +1,51 @@
+---
+title: "Component Landscape"
+description: "A bird's-eye view of every component family in the hub, organized by category and source library."
+---
+
+## Overview
+
+The UI Components Hub aggregates components from multiple design systems into one browsable documentation surface. This page maps out the full landscape so you can quickly find what you need.
+
+## Component Categories
+
+The hub organizes components into six primary groups. Each group contains entries from one or more source libraries.
+
+| Category | Description | Libraries |
+| :--- | :--- | :--- |
+| **Backgrounds** | Gradient, texture, and decorative background treatments | Astro, Aceternity |
+| **Buttons** | CTA, toolbar, and inline command surfaces | shadcn/ui, Magic UI |
+| **Cards** | Flexible surfaces for grouping previews and metadata | shadcn/ui, Tremor |
+| **Hero Sections** | Large-format introductory surfaces for landing pages | Astro |
+| **Layouts** | Container, split-pane, and card-grid patterns | Astro |
+| **Typography** | Type hierarchy patterns for headings and body text | Astro |
+
+## Library Coverage
+
+Each library brings a different strength to the hub:
+
+- **shadcn/ui** — Production-grade primitives built on Radix UI. Best for buttons, cards, inputs, dialogs, and form elements.
+- **Magic UI** — Animated, high-impact components for landing pages and marketing surfaces. Shimmer buttons, animated gradients, and particle effects.
+- **Tremor** — Data visualization and dashboard components. Metric cards, area charts, bar lists, and KPI displays.
+- **Astro** — Native Astro components for structural patterns. Layouts, hero sections, and background treatments that don't need client-side JavaScript.
+
+## Featured Components
+
+These are the most commonly used entries:
+
+| Component | Library | Category | Status |
+| :--- | :--- | :--- | :--- |
+| [Shimmer Button](/docs/magic-ui-shimmer-button) | Magic UI | Buttons | Stable |
+| [Metric Card](/docs/tremor-metric-card) | Tremor | Cards | Stable |
+| Button | shadcn/ui | Buttons | Stable |
+| Card | shadcn/ui | Cards | Stable |
+| Hero Section | Astro | Hero Sections | New |
+
+## Adding New Components
+
+To add a component to the hub:
+
+1. Create a demo component in `src/components/mdx/`
+2. Create an MDX doc in `src/content/docs/`
+3. Use `<ComponentPreview>` to render an interactive preview with code
+4. The sidebar and command menu will pick up the new entry automatically

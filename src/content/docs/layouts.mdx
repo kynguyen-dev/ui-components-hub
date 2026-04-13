@@ -1,0 +1,83 @@
+---
+title: "Layouts"
+description: "Container, split-pane, and card-grid patterns for responsive documentation and product surfaces."
+category: "Layouts"
+---
+
+## Overview
+
+Layout components provide the structural skeleton for pages. They handle responsive behavior, grid systems, and content flow so individual components can focus on their own concerns.
+
+## Core Patterns
+
+### Docs Shell (3-Column)
+
+The primary layout used on this very page. A sidebar, main content column, and table-of-contents rail.
+
+```css
+.docs-shell {
+  display: grid;
+  grid-template-columns: 17rem minmax(0, 1fr) 14rem;
+  min-height: calc(100vh - 4rem);
+}
+```
+
+This layout gracefully collapses:
+- **Below 1200px**: The right rail (TOC) hides → 2-column
+- **Below 900px**: The left sidebar hides → single column
+
+### Card Grid
+
+A responsive grid for displaying component cards, feature lists, or pricing tables.
+
+```html
+<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  <Card>...</Card>
+  <Card>...</Card>
+  <Card>...</Card>
+</div>
+```
+
+### Split Layout
+
+A 2-column layout with flexible ratios. Common for content + sidebar or text + visual pairings.
+
+```html
+<div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+  <div><!-- Primary content --></div>
+  <div><!-- Supporting content --></div>
+</div>
+```
+
+### Centered Content
+
+A simple max-width container for article-style reading. Used in the main docs content area.
+
+```css
+.docs-content {
+  max-width: 860px;
+  padding: 2.75rem 3rem 5rem;
+}
+```
+
+## Responsive Breakpoints
+
+The hub uses these standard breakpoints:
+
+| Breakpoint | Width | Behavior |
+| :--- | :--- | :--- |
+| Mobile | < 640px | Single column, compact padding |
+| Tablet | 640px–900px | Single column, wider padding |
+| Small desktop | 900px–1200px | 2-column docs layout |
+| Desktop | > 1200px | Full 3-column docs layout |
+
+## Guidelines
+
+- **Use CSS Grid over Flexbox** for page-level layouts — it handles the collapse behavior more predictably.
+- **Sticky elements**: Use `position: sticky` with `top: 4rem` (header height) for sidebars and TOC rails.
+- **Max-width on reading columns**: Keep body text columns at 860px or less for comfortable line lengths.
+
+## Related
+
+- [Backgrounds](/docs/backgrounds) — Visual treatments applied behind layouts
+- [Hero Sections](/docs/hero-sections) — Full-width sections within layouts

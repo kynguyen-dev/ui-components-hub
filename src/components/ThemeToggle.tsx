@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Moon, Sun } from "lucide-react"
 import { useStore } from "@nanostores/react"
-import { $theme, setTheme, type Theme } from "@/lib/theme-store"
+import { $theme, setTheme } from "@/lib/theme-store"
 import { Button } from "@/components/ui/button"
 
 export function ThemeToggle() {
@@ -19,10 +19,12 @@ export function ThemeToggle() {
     return <Button variant="ghost" size="icon" disabled className="h-9 w-9" />
   }
 
-  // Determine current effective theme (light or dark)
-  const currentTheme = theme === "system" 
-    ? (typeof document !== 'undefined' && document.documentElement.classList.contains("dark") ? "dark" : "light")
-    : theme
+  const currentTheme =
+    theme === "system"
+      ? typeof document !== "undefined" && document.documentElement.dataset.theme === "light"
+        ? "light"
+        : "dark"
+      : theme
 
   return (
     <Button

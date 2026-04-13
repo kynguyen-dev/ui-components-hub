@@ -1,0 +1,65 @@
+---
+title: "Hero Sections"
+description: "Large-format introductory surfaces for landing pages, product overviews, and section entries."
+category: "Hero Sections"
+---
+
+## Overview
+
+Hero sections are the first thing users see. They set tone, communicate value, and direct attention. The hub includes hero patterns optimized for documentation sites, landing pages, and product surfaces.
+
+## Patterns
+
+### Centered Hero
+
+The most common pattern. A centered headline, subtitle, and CTA button stack. Works for both landing pages and docs entry points.
+
+```astro
+<section class="py-24 text-center">
+  <h1 class="text-5xl font-bold tracking-tight">
+    Build faster with UI Hub
+  </h1>
+  <p class="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+    A curated component library for Astro, React, and Tailwind.
+  </p>
+  <div class="mt-8 flex justify-center gap-4">
+    <Button>Get Started</Button>
+    <Button variant="outline">Browse Components</Button>
+  </div>
+</section>
+```
+
+### Split Hero
+
+Content on one side, visual (image, illustration, or component preview) on the other. Great for product pages.
+
+```astro
+<section class="grid lg:grid-cols-2 gap-12 items-center py-20">
+  <div>
+    <h1 class="text-4xl font-bold">Ship polished UIs</h1>
+    <p class="mt-4 text-muted-foreground">
+      Pre-built, accessible components ready for production.
+    </p>
+  </div>
+  <div class="rounded-2xl border bg-muted/20 p-8">
+    <!-- Component preview or illustration -->
+  </div>
+</section>
+```
+
+### Gradient Hero
+
+Uses a gradient background to create visual warmth. Best when combined with background patterns from the [Backgrounds](/docs/backgrounds) category.
+
+## Design Guidelines
+
+- **Keep it scannable**: Hero copy should be understood in under 3 seconds.
+- **One primary CTA**: Don't compete with multiple equal-weight actions.
+- **Responsive sizing**: Use `clamp()` for fluid typography — e.g., `font-size: clamp(2rem, 5vw, 4rem)`.
+- **White space**: Heroes need breathing room. Use `py-20` or more.
+
+## Related
+
+- [Backgrounds](/docs/backgrounds) — Background treatments often paired with heroes
+- [Typography](/docs/typography) — Heading patterns used in hero sections
+- [Buttons](/docs/buttons) — CTA components placed in hero actions

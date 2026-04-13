@@ -1,0 +1,88 @@
+---
+title: "shadcn/ui"
+description: "Production-grade, accessible UI primitives built on Radix UI. The backbone of the hub's interactive components."
+library: "shadcn/ui"
+---
+
+import { ComponentPreview } from '@/components/mdx/ComponentPreview';
+import { Button } from '@/components/mdx/MdxButton';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/mdx/MdxCard';
+
+## Overview
+
+**shadcn/ui** is a collection of beautifully designed, accessible components built on top of Radix UI and styled with Tailwind CSS. Unlike traditional component libraries, shadcn/ui gives you the source code — components are copied into your project, not imported from a package.
+
+## Available Components
+
+| Component | Status | Description |
+| :--- | :--- | :--- |
+| [Button](/docs/buttons) | Stable | Multi-variant action primitives |
+| [Card](/docs/cards) | Stable | Composable content containers |
+| Tabs | Stable | Content switching interface |
+| Dialog | Stable | Modal overlays |
+| Command | Stable | Command palette (⌘K) |
+| Input | Stable | Form text inputs |
+| Scroll Area | Stable | Custom scrollbar containers |
+| Sheet | Stable | Slide-out panels |
+
+## Quick Preview
+
+<ComponentPreview
+  client:load
+  title="shadcn/ui Primitives"
+  description="Button variants and a Card component rendered together."
+  code={`import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+
+export function Demo() {
+  return (
+    <Card className="w-[320px]">
+      <CardHeader>
+        <CardTitle>shadcn/ui</CardTitle>
+      </CardHeader>
+      <CardContent className="flex gap-2">
+        <Button size="sm">Primary</Button>
+        <Button size="sm" variant="outline">Outline</Button>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  <Card client:load className="w-[320px]">
+    <CardHeader>
+      <CardTitle>shadcn/ui</CardTitle>
+      <CardDescription>Production-grade primitives for your next project.</CardDescription>
+    </CardHeader>
+    <CardContent className="flex gap-2">
+      <Button client:load size="sm">Primary</Button>
+      <Button client:load size="sm" variant="outline">Outline</Button>
+      <Button client:load size="sm" variant="ghost">Ghost</Button>
+    </CardContent>
+  </Card>
+</ComponentPreview>
+
+## Installation
+
+Add components individually using the CLI:
+
+```bash
+npx shadcn@latest add button
+npx shadcn@latest add card
+npx shadcn@latest add tabs
+npx shadcn@latest add command dialog
+```
+
+Components are installed to `src/components/ui/` and can be customized freely.
+
+## Design Principles
+
+- **Copy/paste ownership** — You own the code. No external dependency to upgrade.
+- **Radix primitives** — Built on Radix UI for accessibility (ARIA, keyboard navigation, focus management).
+- **CSS variables** — All colors use CSS custom properties for easy theming.
+- **Tailwind-first** — Styled with Tailwind utilities, composable with `cn()`.
+
+## Related
+
+- [Buttons](/docs/buttons) — Detailed button documentation
+- [Cards](/docs/cards) — Card usage patterns and variants
+- [Magic UI](/docs/libraries/magic-ui) — Animated components that complement shadcn/ui

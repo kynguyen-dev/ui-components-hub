@@ -1,0 +1,85 @@
+---
+title: "Installation"
+description: "Get up and running with UI Components Hub in minutes. Set up Astro, React, Tailwind CSS, and the component toolchain."
+---
+
+## Prerequisites
+
+Before installing UI Components Hub, make sure you have the following:
+
+- **Node.js** v22.12.0 or later
+- **Package manager**: pnpm (recommended), npm, or yarn
+- Basic familiarity with Astro and React
+
+## Quick Start
+
+Create a new project or clone the repository:
+
+```bash
+git clone https://github.com/kynguyen-dev/ui-components-hub.git
+cd ui-components-hub
+pnpm install
+```
+
+## Start the Dev Server
+
+```bash
+pnpm run dev
+```
+
+The site will be available at `http://localhost:4321`.
+
+## Project Structure
+
+The project follows standard Astro conventions with some additions:
+
+```
+src/
+├── components/
+│   ├── layout/        # Header, Footer, Sidebar shells
+│   ├── mdx/           # Components used inside MDX docs
+│   └── ui/            # shadcn/ui primitives (Button, Card, Tabs…)
+├── content/
+│   └── docs/          # MDX documentation pages
+├── layouts/           # MainLayout.astro
+├── lib/               # Utilities, sidebar data, docs helpers
+├── pages/             # Astro routes
+│   ├── docs/          # Dynamic docs routing
+│   └── components/    # Component catalog page
+└── styles/            # Global CSS with Tailwind + design tokens
+```
+
+## Adding Components
+
+Use the shadcn CLI to add new UI primitives:
+
+```bash
+npx shadcn@latest add button
+npx shadcn@latest add card
+npx shadcn@latest add tabs
+```
+
+Components are installed to `src/components/ui/` and use Tailwind CSS with CSS custom properties for theming.
+
+## Adding Documentation
+
+Create a new `.mdx` file in `src/content/docs/`:
+
+```mdx
+---
+title: "My Component"
+description: "A brief description of what this component does."
+library: "shadcn/ui"
+category: "Buttons"
+---
+
+Content goes here...
+```
+
+The page will automatically be available at `/docs/{filename}`.
+
+## Next Steps
+
+- Browse the [Component Landscape](/docs/component-landscape) to see what's available
+- Explore individual component docs like [Shimmer Button](/docs/magic-ui-shimmer-button)
+- Check out the [Libraries](/docs/libraries/shadcn) section for per-library coverage

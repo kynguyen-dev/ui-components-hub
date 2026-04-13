@@ -1,0 +1,60 @@
+---
+title: "Backgrounds"
+description: "Gradient, texture, and decorative background treatments for landing pages, hero sections, and content surfaces."
+category: "Backgrounds"
+---
+
+## Overview
+
+Background components create visual depth and atmosphere without distracting from content. The hub includes several background patterns suitable for hero sections, feature grids, and documentation surfaces.
+
+## Available Patterns
+
+### Dot Grid
+
+A subtle repeating dot pattern that adds texture to empty surfaces. Used throughout the hub's component preview areas.
+
+```css
+background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+background-size: 24px 24px;
+```
+
+### Gradient Mesh
+
+Soft, multi-stop gradients that create depth. Best for hero sections and landing pages.
+
+```css
+background: linear-gradient(
+  135deg,
+  hsl(240 60% 96%) 0%,
+  hsl(280 60% 96%) 50%,
+  hsl(320 60% 96%) 100%
+);
+```
+
+### Noise Texture
+
+A fine-grain noise overlay that adds organic warmth to flat surfaces. Apply as a pseudo-element with low opacity.
+
+### Grid Lines
+
+Thin intersecting lines on a clean background. Creates a technical, blueprint-style feel ideal for developer documentation.
+
+```css
+background-image:
+  linear-gradient(var(--border) 1px, transparent 1px),
+  linear-gradient(90deg, var(--border) 1px, transparent 1px);
+background-size: 40px 40px;
+```
+
+## Usage Guidelines
+
+- **Opacity matters**: Keep background patterns at 20–40% opacity so they don't compete with foreground content.
+- **Dark mode**: Test patterns in both light and dark modes — some patterns invert poorly.
+- **Performance**: CSS-only patterns are preferred over image-based backgrounds for smaller bundle sizes.
+- **Layering**: Combine a pattern with a gradient overlay for richer results.
+
+## Related
+
+- [Hero Sections](/docs/hero-sections) — Often paired with background treatments
+- [Layouts](/docs/layouts) — Container patterns that sit on top of backgrounds

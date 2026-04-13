@@ -1,0 +1,86 @@
+---
+title: "Typography"
+description: "Type hierarchy patterns for headings, descriptions, and technical documentation content."
+category: "Typography"
+---
+
+## Overview
+
+Consistent typography creates visual hierarchy and improves readability. The hub uses **Geist** as its primary font family with a carefully calibrated type scale.
+
+## Type Scale
+
+| Element | Size | Weight | Tracking |
+| :--- | :--- | :--- | :--- |
+| Page Title (h1) | `clamp(2.2rem, 3.5vw, 3rem)` | 800 | -0.04em |
+| Section Heading (h2) | 1.6rem | 800 | -0.025em |
+| Subsection (h3) | 1.2rem | 700 | -0.015em |
+| Body Text | 1rem | 400 | 0 |
+| Small / Caption | 0.875rem | 500 | 0 |
+| Overline / Label | 0.78rem | 700 | 0.08em |
+
+## Heading Patterns
+
+### Page Titles
+
+Large, bold headings that anchor the page. Used once per page.
+
+```html
+<h1 class="text-4xl font-extrabold tracking-tight">
+  Shimmer Button
+</h1>
+```
+
+### Section Headings
+
+Visually separated sections with a bottom border.
+
+```css
+h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--border);
+}
+```
+
+### Overlines / Kickers
+
+Small uppercase labels that appear above titles for categorization.
+
+```html
+<p class="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
+  Getting Started
+</p>
+```
+
+## Body Text
+
+- **Line height**: Use `1.75` to `1.85` for comfortable reading in documentation.
+- **Max width**: Keep paragraphs under `50rem` to maintain optimal line length.
+- **Color**: Body text uses `var(--foreground)`, supporting text uses `var(--muted-foreground)`.
+
+## Code Typography
+
+Inline code and code blocks use monospace font at slightly reduced size:
+
+```css
+code:not(pre code) {
+  background: var(--muted);
+  border-radius: 0.35rem;
+  padding: 0.15em 0.35em;
+  font-size: 0.88em;
+}
+```
+
+## Guidelines
+
+- **Don't skip heading levels** — go from h2 to h3, never h2 to h4.
+- **Use tracking sparingly** — negative tracking helps large headings; positive tracking helps overlines. Body text should use the default.
+- **Weight differentiation** — use weight (700 vs 400) rather than size alone to create hierarchy within similar-sized elements.
+
+## Related
+
+- [Hero Sections](/docs/hero-sections) — Uses the largest heading patterns
+- [Layouts](/docs/layouts) — Structural patterns that contain typography

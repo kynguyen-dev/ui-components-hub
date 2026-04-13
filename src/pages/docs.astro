@@ -1,0 +1,625 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import { ArrowUpRight, BadgeInfo, Boxes, Layers3, Sparkles } from 'lucide-react';
+import { getCategorySummaries, getFeaturedComponentEntries, getLibrarySummaries } from '@/lib/docs';
+import { docsSidebarGroups, isActiveLink } from '@/lib/docs-sidebar';
+
+const [categories, featuredComponents, libraries] = await Promise.all([
+  getCategorySummaries(),
+  getFeaturedComponentEntries(4),
+  getLibrarySummaries(),
+]);
+
+const currentPath = Astro.url.pathname;
+
+const sectionLinks = [
+  { href: '#introduction', label: 'Introduction' },
+  { href: '#advantages', label: 'Advantages of UI Hub' },
+  { href: '#component-landscape', label: 'Component landscape' },
+  { href: '#start-now', label: 'Start now' },
+];
+---
+
+<MainLayout
+  title="Docs | UI Components Hub"
+  description="Documentation overview for UI Components Hub."
+>
+  <section class="docs-shell">
+    <aside class="docs-sidebar">
+      <div class="docs-sidebar-inner">
+        {docsSidebarGroups.map((group) => (
+          <div class="docs-nav-group">
+            <p class="docs-nav-title">{group.title}</p>
+            <nav class="docs-subnav" aria-label={group.title}>
+              {group.items.map((item) => (
+                <a
+                  class:list={[
+                    'docs-subnav-link',
+                    isActiveLink(item.href, currentPath) && 'is-active',
+                  ]}
+                  href={item.href}
+                >
+                  <span>{item.label}</span>
+                  {item.badge && (
+                    <span class:list={[
+                      'docs-badge',
+                      item.badge === 'new' && 'docs-badge--new',
+                      item.badge === 'popular' && 'docs-badge--popular',
+                    ]}>
+                      {item.badge}
+                    </span>
+                  )}
+                </a>
+              ))}
+            </nav>
+          </div>
+        ))}
+      </div>
+    </aside>
+
+    <div class="docs-main">
+      <article class="docs-content">
+        <header class="docs-hero" id="overview">
+          <p class="docs-kicker">Overview</p>
+          <h1>UI Hub - Overview</h1>
+          <p class="docs-lead">
+            UI Hub is a curated Astro-first component reference for teams building landing pages, documentation surfaces, and product interfaces with consistent patterns.
+          </p>
+        </header>
+
+        <section id="introduction" class="docs-section">
+          <div class="docs-section-head">
+            <h2>Introduction</h2>
+          </div>
+          <p>
+            UI Hub brings reusable UI building blocks into one structured place. Instead of jumping between isolated examples, teams can scan the catalog, compare library coverage, and move faster from exploration to implementation.
+          </p>
+          <p>
+            The page is intentionally shaped like a real documentation workspace: structured left navigation, focused reading column, and a light right rail for contents and supporting context.
+          </p>
+
+          <div class="docs-note">
+            <BadgeInfo className="h-4 w-4 shrink-0 text-muted-foreground" />
+            <p>
+              This page is built as a docs index, not a marketing hero. Its job is orientation: what exists, why it matters, and where to go next.
+            </p>
+          </div>
+        </section>
+
+        <section id="installation" class="docs-section">
+          <div class="docs-section-head">
+            <h2>Installation</h2>
+          </div>
+          <p>
+            The current project already ships with Astro, React, Tailwind, and shadcn/ui patterns. From here, the docs area serves as a navigational layer that helps teams discover categories, common surface types, and library coverage without adding unnecessary UI chrome.
+          </p>
+        </section>
+
+        <section id="usage" class="docs-section">
+          <div class="docs-section-head">
+            <h2>Usage</h2>
+          </div>
+          <p>
+            Use the left sidebar to move between major doc entry points, read the central article for orientation, and use the right contents rail for quick section jumps. This mirrors the reading rhythm of mature component documentation systems.
+          </p>
+        </section>
+
+        <section id="advantages" class="docs-section">
+          <div class="docs-section-head">
+            <h2>Advantages of UI Hub</h2>
+          </div>
+          <ul class="docs-list">
+            <li>
+              <strong>Fast orientation:</strong> key groups and featured entries are visible immediately without forcing a dense dashboard.
+            </li>
+            <li>
+              <strong>Clear structure:</strong> the documentation view mirrors familiar docs products with one reading column and surrounding support rails.
+            </li>
+            <li>
+              <strong>Consistent naming:</strong> component groups and libraries stay aligned across the site.
+            </li>
+            <li>
+              <strong>Practical discovery:</strong> the focus is on patterns people actually reuse in product and content work.
+            </li>
+          </ul>
+        </section>
+
+        <section id="component-landscape" class="docs-section">
+          <div class="docs-section-head">
+            <h2>Component landscape</h2>
+          </div>
+          <p>
+            The current hub organizes components into a compact number of families so people can scan quickly and still understand what the system covers.
+          </p>
+
+          <div class="docs-surface">
+            <div class="docs-surface-head">
+              <h3>Featured components</h3>
+              <span>{featuredComponents.length} entries</span>
+            </div>
+            <div class="docs-surface-stack">
+              {featuredComponents.map((entry) => (
+                <div class="docs-mini-card">
+                  <div>
+                    <p class="docs-mini-title">{entry.title}</p>
+                    <p class="docs-mini-copy">{entry.description}</p>
+                  </div>
+                  <span class="docs-mini-pill">{entry.library}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="start-now" class="docs-section">
+          <div class="docs-section-head">
+            <h2>Start now</h2>
+          </div>
+          <p>
+            Start with the component catalog if you want the complete picture, then use the library breakdown below to understand where the strongest coverage currently sits.
+          </p>
+
+          <div class="docs-link-grid">
+            <a href="/components" class="docs-link-card">
+              <div class="docs-link-icon">
+                <Boxes className="h-4 w-4" />
+              </div>
+              <div>
+                <h3>Browse components</h3>
+                <p>Open the full component registry and scan each category in one place.</p>
+              </div>
+              <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
+            </a>
+
+            <div class="docs-link-card">
+              <div class="docs-link-icon">
+                <Sparkles className="h-4 w-4" />
+              </div>
+              <div>
+                <h3>Featured entries</h3>
+                <p>{featuredComponents.length} highlighted component groups for quick discovery.</p>
+              </div>
+            </div>
+
+            <div class="docs-link-card">
+              <div class="docs-link-icon">
+                <Layers3 className="h-4 w-4" />
+              </div>
+              <div>
+                <h3>Library coverage</h3>
+                <p>{libraries.length} library families currently represented in the hub.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="docs-library-list">
+            {libraries.map((library) => (
+              <div class="docs-library-row">
+                <span>{library.title}</span>
+                <span>{library.count} component groups</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      </article>
+    </div>
+
+    <aside class="docs-rail">
+      <div class="docs-rail-inner">
+        <div class="docs-contents">
+          <p class="docs-rail-label">Contents</p>
+          <nav class="docs-contents-nav">
+            {sectionLinks.map((link) => (
+              <a href={link.href}>{link.label}</a>
+            ))}
+          </nav>
+        </div>
+
+        <div class="docs-sponsor-card">
+          <div class="docs-sponsor-brand">ui</div>
+          <p class="docs-sponsor-title">Project spotlight</p>
+          <p class="docs-sponsor-copy">
+            Keep this area for ecosystem references, internal links, or curated design resources.
+          </p>
+        </div>
+
+        <div class="docs-sponsor-card compact">
+          <p class="docs-sponsor-copy">The docs shell is designed for reading comfort first, not visual noise.</p>
+        </div>
+      </div>
+    </aside>
+  </section>
+</MainLayout>
+
+<style>
+  .docs-shell {
+    display: grid;
+    grid-template-columns: 17rem minmax(0, 1fr) 14rem;
+    min-height: calc(100vh - 4rem);
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--background) 94%, white) 0%, var(--background) 14rem),
+      var(--background);
+  }
+
+  .docs-sidebar {
+    border-inline-end: 1px solid var(--border);
+    background: color-mix(in srgb, var(--background) 98%, var(--muted));
+  }
+
+  .docs-rail {
+    border-inline-start: 1px solid var(--border);
+    background: color-mix(in srgb, var(--background) 99%, var(--muted));
+  }
+
+  .docs-sidebar-inner,
+  .docs-rail-inner {
+    position: sticky;
+    top: 4rem;
+    max-height: calc(100vh - 4rem);
+    overflow: auto;
+    padding: 1.25rem 1rem 2rem;
+  }
+
+  .docs-nav-group + .docs-nav-group {
+    margin-top: 1rem;
+  }
+
+  .docs-nav-title {
+    margin: 0 0 0.45rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+
+  .docs-subnav {
+    display: grid;
+    gap: 0.1rem;
+  }
+
+  .docs-subnav-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    border-radius: 0.65rem;
+    padding: 0.45rem 0.7rem;
+    font-size: 0.88rem;
+    line-height: 1.35;
+    color: var(--muted-foreground);
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .docs-subnav-link:hover,
+  .docs-subnav-link.is-active {
+    background: color-mix(in srgb, var(--primary) 8%, transparent);
+    color: var(--foreground);
+  }
+
+  .docs-subnav-link.is-active {
+    font-weight: 600;
+  }
+
+  .docs-badge {
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 999px;
+    padding: 0.15rem 0.5rem;
+    background: var(--muted);
+    color: var(--muted-foreground);
+  }
+
+  .docs-badge--new {
+    background: color-mix(in srgb, #8b5cf6 12%, transparent);
+    color: #8b5cf6;
+  }
+
+  .docs-badge--popular {
+    background: color-mix(in srgb, #3b82f6 12%, transparent);
+    color: #3b82f6;
+  }
+
+  .docs-main {
+    min-width: 0;
+  }
+
+  .docs-content {
+    max-width: 860px;
+    padding: 2.75rem 3rem 5rem;
+  }
+
+  .docs-hero {
+    margin-bottom: 2.75rem;
+  }
+
+  .docs-kicker {
+    margin: 0 0 0.65rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+
+  .docs-hero h1 {
+    font-size: clamp(2.6rem, 4vw, 3.5rem);
+    line-height: 1.04;
+    letter-spacing: -0.045em;
+    font-weight: 800;
+  }
+
+  .docs-lead {
+    max-width: 48rem;
+    margin-top: 0.9rem;
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: var(--foreground);
+  }
+
+  .docs-section + .docs-section {
+    margin-top: 2.9rem;
+  }
+
+  .docs-section-head {
+    margin-bottom: 0.95rem;
+  }
+
+  .docs-section h2 {
+    font-size: clamp(1.7rem, 2vw, 2.25rem);
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+  }
+
+  .docs-section p {
+    max-width: 50rem;
+    line-height: 1.85;
+    color: var(--foreground);
+  }
+
+  .docs-section p + p {
+    margin-top: 0.9rem;
+  }
+
+  .docs-note {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 0.95rem;
+    background: color-mix(in srgb, var(--muted) 58%, transparent);
+    padding: 0.95rem 1rem;
+  }
+
+  .docs-note p {
+    margin: 0;
+  }
+
+  .docs-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: grid;
+    gap: 0.7rem;
+    line-height: 1.8;
+  }
+
+  .docs-surface {
+    margin-top: 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: color-mix(in srgb, var(--card) 98%, var(--muted));
+    padding: 1.15rem;
+  }
+
+  .docs-surface-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.95rem;
+  }
+
+  .docs-surface-head h3 {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .docs-surface-head span {
+    font-size: 0.78rem;
+    color: var(--muted-foreground);
+  }
+
+  .docs-surface-stack {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .docs-mini-card {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.95rem;
+    background: var(--card);
+    padding: 0.9rem 1rem;
+  }
+
+  .docs-mini-title {
+    font-size: 0.98rem;
+    font-weight: 700;
+  }
+
+  .docs-mini-copy {
+    margin-top: 0.25rem;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--muted-foreground);
+  }
+
+  .docs-mini-pill {
+    border-radius: 999px;
+    background: var(--muted);
+    padding: 0.32rem 0.58rem;
+    height: fit-content;
+    font-size: 0.74rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .docs-link-grid {
+    display: grid;
+    gap: 0.9rem;
+    margin-top: 1.35rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .docs-link-card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.85rem;
+    align-items: start;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: var(--card);
+    padding: 1rem;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .docs-link-card h3 {
+    font-size: 0.98rem;
+    font-weight: 700;
+  }
+
+  .docs-link-card p {
+    margin-top: 0.35rem;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--muted-foreground);
+  }
+
+  .docs-link-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.7rem;
+    background: color-mix(in srgb, var(--primary) 8%, transparent);
+    color: var(--primary);
+  }
+
+  .docs-library-list {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1.15rem;
+  }
+
+  .docs-library-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.95rem;
+    background: color-mix(in srgb, var(--card) 98%, var(--muted));
+    padding: 0.95rem 1rem;
+    font-size: 0.94rem;
+  }
+
+  .docs-library-row span:last-child {
+    color: var(--muted-foreground);
+    white-space: nowrap;
+  }
+
+  .docs-rail-label {
+    margin: 0 0 0.75rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+
+  .docs-contents-nav {
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  .docs-contents-nav a {
+    color: var(--foreground);
+    font-size: 0.9rem;
+    text-decoration: none;
+  }
+
+  .docs-sponsor-card {
+    margin-top: 1.15rem;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: var(--card);
+    padding: 1rem;
+  }
+
+  .docs-sponsor-card.compact {
+    padding: 0.9rem 1rem;
+  }
+
+  .docs-sponsor-brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.9rem;
+    background: color-mix(in srgb, var(--primary) 8%, transparent);
+    color: var(--primary);
+    font-size: 1.15rem;
+    font-weight: 800;
+    text-transform: lowercase;
+  }
+
+  .docs-sponsor-title {
+    margin-top: 0.8rem;
+    font-weight: 700;
+  }
+
+  .docs-sponsor-copy {
+    margin-top: 0.4rem;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--muted-foreground);
+  }
+
+  @media (max-width: 1200px) {
+    .docs-shell {
+      grid-template-columns: 16rem minmax(0, 1fr);
+    }
+
+    .docs-rail {
+      display: none;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .docs-shell {
+      grid-template-columns: 1fr;
+    }
+
+    .docs-sidebar {
+      display: none;
+    }
+
+    .docs-content {
+      max-width: none;
+      padding: 2rem 1rem 3rem;
+    }
+
+    .docs-link-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

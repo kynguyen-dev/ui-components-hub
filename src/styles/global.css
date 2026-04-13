@@ -94,15 +94,50 @@
   * {
     @apply border-border outline-ring/50;
   }
+  .container {
+    margin-inline: auto;
+    width: 100%;
+    max-width: none;
+    padding-inline: 1rem;
+  }
+  .site-shell {
+    width: 100%;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 768px) {
+    .container {
+      padding-inline: 1.5rem;
+    }
+    .site-shell {
+      padding-inline: 1.5rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .container {
+      padding-inline: 2rem;
+    }
+    .site-shell {
+      padding-inline: 2rem;
+    }
+  }
   body {
     @apply bg-background text-foreground;
   }
-  button, 
+  button,
   [role="button"] {
     @apply cursor-pointer;
   }
   button:disabled,
   [role="button"]:disabled {
     @apply cursor-default;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

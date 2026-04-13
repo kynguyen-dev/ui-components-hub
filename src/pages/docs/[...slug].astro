@@ -1,0 +1,504 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import { getCollection, render } from 'astro:content';
+import { docsSidebarGroups, isActiveLink } from '@/lib/docs-sidebar';
+
+export async function getStaticPaths() {
+  const docs = await getCollection('docs');
+  return docs.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+
+const currentPath = Astro.url.pathname;
+
+// Filter headings for the right sidebar (h2 and h3 only)
+const tocHeadings = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
+
+// Get the library badge color
+const libraryColors: Record<string, string> = {
+  'shadcn': 'bg-blue-500/10 text-blue-500',
+  'shadcn/ui': 'bg-blue-500/10 text-blue-500',
+  'Magic UI': 'bg-violet-500/10 text-violet-500',
+  'Tremor': 'bg-emerald-500/10 text-emerald-500',
+  'Aceternity': 'bg-amber-500/10 text-amber-500',
+  'Astro': 'bg-orange-500/10 text-orange-500',
+};
+
+const libraryColorClass = libraryColors[entry.data.library] ?? 'bg-primary/10 text-primary';
+---
+
+<MainLayout
+  title={`${entry.data.title} | UI Components Hub`}
+  description={entry.data.description}
+>
+  <section class="docs-shell">
+    <!-- Left Sidebar -->
+    <aside class="docs-sidebar">
+      <div class="docs-sidebar-inner">
+        {docsSidebarGroups.map((group) => (
+          <div class="docs-nav-group">
+            <p class="docs-nav-title">{group.title}</p>
+            <nav class="docs-subnav" aria-label={group.title}>
+              {group.items.map((item) => (
+                <a
+                  class:list={[
+                    'docs-subnav-link',
+                    isActiveLink(item.href, currentPath) && 'is-active',
+                  ]}
+                  href={item.href}
+                >
+                  <span>{item.label}</span>
+                  {item.badge && (
+                    <span class:list={[
+                      'docs-badge',
+                      item.badge === 'new' && 'docs-badge--new',
+                      item.badge === 'popular' && 'docs-badge--popular',
+                    ]}>
+                      {item.badge}
+                    </span>
+                  )}
+                </a>
+              ))}
+            </nav>
+          </div>
+        ))}
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="docs-main">
+      <article class="docs-content">
+        <header class="docs-hero">
+          {(entry.data.library || entry.data.category) && (
+            <div class="docs-meta">
+              {entry.data.library && (
+                <span class:list={['docs-library-tag', libraryColorClass]}>
+                  {entry.data.library}
+                </span>
+              )}
+              {entry.data.category && (
+                <span class="docs-category-tag">{entry.data.category}</span>
+              )}
+            </div>
+          )}
+          <h1>{entry.data.title}</h1>
+          <p class="docs-lead">{entry.data.description}</p>
+        </header>
+
+        <div class="docs-mdx-content">
+          <Content />
+        </div>
+      </article>
+    </div>
+
+    <!-- Right Sidebar (Table of Contents) -->
+    <aside class="docs-rail">
+      <div class="docs-rail-inner">
+        {tocHeadings.length > 0 && (
+          <div class="docs-contents">
+            <p class="docs-rail-label">On this page</p>
+            <nav class="docs-contents-nav">
+              {tocHeadings.map((heading) => (
+                <a
+                  href={`#${heading.slug}`}
+                  class:list={[
+                    'docs-toc-link',
+                    heading.depth === 3 && 'docs-toc-link--nested',
+                  ]}
+                >
+                  {heading.text}
+                </a>
+              ))}
+            </nav>
+          </div>
+        )}
+
+        <div class="docs-sponsor-card">
+          <div class="docs-sponsor-brand">ui</div>
+          <p class="docs-sponsor-title">Contribute</p>
+          <p class="docs-sponsor-copy">
+            Found an issue or want to add a component? Open a PR on GitHub.
+          </p>
+        </div>
+      </div>
+    </aside>
+  </section>
+</MainLayout>
+
+<style>
+  /* ================================================
+     Docs Shell - 3-column layout
+     ================================================ */
+  .docs-shell {
+    display: grid;
+    grid-template-columns: 17rem minmax(0, 1fr) 14rem;
+    min-height: calc(100vh - 4rem);
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--background) 94%, white) 0%, var(--background) 14rem),
+      var(--background);
+  }
+
+  /* ================================================
+     Left Sidebar
+     ================================================ */
+  .docs-sidebar {
+    border-inline-end: 1px solid var(--border);
+    background: color-mix(in srgb, var(--background) 98%, var(--muted));
+  }
+
+  .docs-sidebar-inner {
+    position: sticky;
+    top: 4rem;
+    max-height: calc(100vh - 4rem);
+    overflow: auto;
+    padding: 1.25rem 1rem 2rem;
+  }
+
+  .docs-nav-group + .docs-nav-group {
+    margin-top: 1rem;
+  }
+
+  .docs-nav-title {
+    margin: 0 0 0.45rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+
+  .docs-subnav {
+    display: grid;
+    gap: 0.1rem;
+  }
+
+  .docs-subnav-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    border-radius: 0.65rem;
+    padding: 0.45rem 0.7rem;
+    font-size: 0.88rem;
+    line-height: 1.35;
+    color: var(--muted-foreground);
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .docs-subnav-link:hover,
+  .docs-subnav-link.is-active {
+    background: color-mix(in srgb, var(--primary) 8%, transparent);
+    color: var(--foreground);
+  }
+
+  .docs-subnav-link.is-active {
+    font-weight: 600;
+  }
+
+  .docs-badge {
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 999px;
+    padding: 0.15rem 0.5rem;
+    background: var(--muted);
+    color: var(--muted-foreground);
+  }
+
+  .docs-badge--new {
+    background: color-mix(in srgb, #8b5cf6 12%, transparent);
+    color: #8b5cf6;
+  }
+
+  .docs-badge--popular {
+    background: color-mix(in srgb, #3b82f6 12%, transparent);
+    color: #3b82f6;
+  }
+
+  /* ================================================
+     Main Content Area
+     ================================================ */
+  .docs-main {
+    min-width: 0;
+  }
+
+  .docs-content {
+    max-width: 860px;
+    padding: 2.75rem 3rem 5rem;
+  }
+
+  .docs-hero {
+    margin-bottom: 2.75rem;
+  }
+
+  .docs-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .docs-library-tag {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .docs-category-tag {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: var(--muted);
+    color: var(--muted-foreground);
+  }
+
+  .docs-hero h1 {
+    font-size: clamp(2.2rem, 3.5vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    font-weight: 800;
+  }
+
+  .docs-lead {
+    max-width: 48rem;
+    margin-top: 0.9rem;
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: var(--muted-foreground);
+  }
+
+  /* ================================================
+     MDX Content Prose Styles
+     ================================================ */
+  .docs-mdx-content :global(h2) {
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin-top: 2.5rem;
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid var(--border);
+    scroll-margin-top: 5rem;
+  }
+
+  .docs-mdx-content :global(h3) {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin-top: 1.8rem;
+    margin-bottom: 0.65rem;
+    scroll-margin-top: 5rem;
+  }
+
+  .docs-mdx-content :global(p) {
+    line-height: 1.8;
+    color: var(--foreground);
+    margin-bottom: 1rem;
+  }
+
+  .docs-mdx-content :global(ul) {
+    margin: 0.5rem 0 1rem;
+    padding-left: 1.25rem;
+    display: grid;
+    gap: 0.4rem;
+    line-height: 1.75;
+  }
+
+  .docs-mdx-content :global(li) {
+    color: var(--foreground);
+  }
+
+  .docs-mdx-content :global(strong) {
+    font-weight: 700;
+  }
+
+  .docs-mdx-content :global(a) {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s;
+  }
+
+  .docs-mdx-content :global(a:hover) {
+    color: var(--foreground);
+  }
+
+  /* Code blocks are handled by Shiki. Add some spacing and styling. */
+  .docs-mdx-content :global(pre) {
+    margin: 1.25rem 0;
+    border-radius: 0.85rem;
+    border: 1px solid var(--border);
+    padding: 1rem 1.25rem;
+    overflow-x: auto;
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+
+  .docs-mdx-content :global(code:not(pre code)) {
+    background: var(--muted);
+    border-radius: 0.35rem;
+    padding: 0.15em 0.35em;
+    font-size: 0.88em;
+    font-weight: 500;
+  }
+
+  /* Tables */
+  .docs-mdx-content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.88rem;
+  }
+
+  .docs-mdx-content :global(th) {
+    text-align: left;
+    font-weight: 700;
+    padding: 0.65rem 0.85rem;
+    border-bottom: 2px solid var(--border);
+    color: var(--foreground);
+  }
+
+  .docs-mdx-content :global(td) {
+    padding: 0.65rem 0.85rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted-foreground);
+  }
+
+  .docs-mdx-content :global(tr:last-child td) {
+    border-bottom: none;
+  }
+
+  .docs-mdx-content :global(td code) {
+    background: var(--muted);
+    border-radius: 0.35rem;
+    padding: 0.12em 0.35em;
+    font-size: 0.85em;
+    font-weight: 500;
+    color: var(--foreground);
+  }
+
+  /* ================================================
+     Right Sidebar (Table of Contents)
+     ================================================ */
+  .docs-rail {
+    border-inline-start: 1px solid var(--border);
+    background: color-mix(in srgb, var(--background) 99%, var(--muted));
+  }
+
+  .docs-rail-inner {
+    position: sticky;
+    top: 4rem;
+    max-height: calc(100vh - 4rem);
+    overflow: auto;
+    padding: 1.25rem 1rem 2rem;
+  }
+
+  .docs-rail-label {
+    margin: 0 0 0.75rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+
+  .docs-contents-nav {
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .docs-toc-link {
+    display: block;
+    padding: 0.35rem 0.65rem;
+    border-radius: 0.5rem;
+    color: var(--muted-foreground);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  .docs-toc-link:hover {
+    background: color-mix(in srgb, var(--primary) 6%, transparent);
+    color: var(--foreground);
+  }
+
+  .docs-toc-link--nested {
+    padding-left: 1.25rem;
+    font-size: 0.82rem;
+  }
+
+  .docs-sponsor-card {
+    margin-top: 1.15rem;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: var(--card);
+    padding: 1rem;
+  }
+
+  .docs-sponsor-brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.9rem;
+    background: color-mix(in srgb, var(--primary) 8%, transparent);
+    color: var(--primary);
+    font-size: 1.15rem;
+    font-weight: 800;
+    text-transform: lowercase;
+  }
+
+  .docs-sponsor-title {
+    margin-top: 0.8rem;
+    font-weight: 700;
+  }
+
+  .docs-sponsor-copy {
+    margin-top: 0.4rem;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--muted-foreground);
+  }
+
+  /* ================================================
+     Responsive
+     ================================================ */
+  @media (max-width: 1200px) {
+    .docs-shell {
+      grid-template-columns: 16rem minmax(0, 1fr);
+    }
+
+    .docs-rail {
+      display: none;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .docs-shell {
+      grid-template-columns: 1fr;
+    }
+
+    .docs-sidebar {
+      display: none;
+    }
+
+    .docs-content {
+      max-width: none;
+      padding: 2rem 1rem 3rem;
+    }
+  }
+</style>

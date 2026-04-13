@@ -1,0 +1,112 @@
+---
+title: "Tremor"
+description: "Data visualization and dashboard components for building analytics interfaces with clean, modern design."
+library: "Tremor"
+---
+
+import { ComponentPreview } from '@/components/mdx/ComponentPreview';
+import { MetricCard } from '@/components/mdx/MetricCard';
+
+## Overview
+
+**Tremor** is a React library for building modern dashboards. It provides pre-built components for data visualization, metrics display, and analytics interfaces — all styled with Tailwind CSS.
+
+The hub currently features Tremor's metric card components with plans to add charts, bar lists, and tracker components.
+
+## Available Components
+
+| Component | Category | Status | Description |
+| :--- | :--- | :--- | :--- |
+| [Metric Card](/docs/tremor-metric-card) | Cards | Stable | KPI card with trend indicators |
+| Area Chart | Charts | Planned | Time-series area visualization |
+| Bar List | Lists | Planned | Horizontal bar ranking list |
+| Tracker | Status | Planned | Status dot timeline tracker |
+
+## Featured: Metric Cards
+
+<ComponentPreview
+  client:load
+  title="Dashboard Metrics"
+  description="A row of metric cards showing various KPIs with trend indicators."
+  code={`import { MetricCard } from '@/components/ui/metric-card';
+
+export function Dashboard() {
+  return (
+    <div className="grid gap-4 md:grid-cols-3">
+      <MetricCard
+        title="Revenue"
+        metric="$45,231"
+        delta="+12.5%"
+        deltaType="up"
+        subtitle="vs. last month"
+      />
+      <MetricCard
+        title="Users"
+        metric="2,338"
+        delta="-3.2%"
+        deltaType="down"
+        subtitle="vs. last week"
+      />
+      <MetricCard
+        title="Conversion"
+        metric="3.24%"
+        deltaType="flat"
+        subtitle="No change"
+      />
+    </div>
+  );
+}`}
+>
+  <div className="grid w-full max-w-3xl gap-4 md:grid-cols-3">
+    <MetricCard
+      client:load
+      title="Revenue"
+      metric="$45,231"
+      delta="+12.5%"
+      deltaType="up"
+      subtitle="vs. last month"
+    />
+    <MetricCard
+      client:load
+      title="Users"
+      metric="2,338"
+      delta="-3.2%"
+      deltaType="down"
+      subtitle="vs. last week"
+    />
+    <MetricCard
+      client:load
+      title="Conversion"
+      metric="3.24%"
+      deltaType="flat"
+      subtitle="No change"
+    />
+  </div>
+</ComponentPreview>
+
+## Installation
+
+```bash
+npm install @tremor/react
+```
+
+Or use the hub's standalone metric card component from the [Metric Card docs](/docs/tremor-metric-card).
+
+## Design Principles
+
+- **Data-first** — Components prioritize at-a-glance readability of numbers and trends.
+- **Color-coded feedback** — Green for positive, red for negative, neutral for flat — universally understood.
+- **Hover interactions** — Subtle hover effects invite exploration without adding visual noise.
+- **Dense but clean** — Dashboard components pack information without feeling cluttered.
+
+## When to Use Tremor
+
+✅ **Use for**: Analytics dashboards, admin panels, KPI displays, monitoring interfaces, financial reports.
+
+❌ **Avoid for**: Marketing landing pages (use Magic UI), content-heavy docs (use shadcn/ui), decorative elements.
+
+## Related
+
+- [Metric Card](/docs/tremor-metric-card) — Full component documentation
+- [Cards](/docs/cards) — All card components compared
+- [shadcn/ui](/docs/libraries/shadcn) — General-purpose primitives for forms and dialogs

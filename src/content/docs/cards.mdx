@@ -1,0 +1,99 @@
+---
+title: "Cards"
+description: "Flexible container surfaces for grouping previews, metadata, stats, and supporting actions."
+category: "Cards"
+---
+
+import { ComponentPreview } from '@/components/mdx/ComponentPreview';
+import { MetricCard } from '@/components/mdx/MetricCard';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/mdx/MdxCard';
+import { Button } from '@/components/mdx/MdxButton';
+
+## Overview
+
+Cards are the primary grouping surface in modern UIs. The hub includes cards from **shadcn/ui** for general use and **Tremor** for data-focused dashboards.
+
+## shadcn/ui Card
+
+A composable card built from flexible sub-components: `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, and `CardFooter`.
+
+<ComponentPreview
+  client:load
+  title="Basic Card"
+  description="A standard card with header, description, and content area."
+  code={`import {
+  Card, CardHeader, CardTitle,
+  CardDescription, CardContent,
+} from '@/components/ui/card';
+
+export function Demo() {
+  return (
+    <Card className="w-[350px]">
+      <CardHeader>
+        <CardTitle>Project Alpha</CardTitle>
+        <CardDescription>
+          A next-generation design system.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>Deploy your new project in one-click.</p>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  <Card client:load className="w-[350px]">
+    <CardHeader>
+      <CardTitle>Project Alpha</CardTitle>
+      <CardDescription>A next-generation design system built for speed.</CardDescription>
+    </CardHeader>
+    <CardContent>
+      <p className="text-sm text-muted-foreground">Deploy your new project in one-click with zero configuration required.</p>
+      <Button client:load variant="outline" className="mt-4">Learn More</Button>
+    </CardContent>
+  </Card>
+</ComponentPreview>
+
+## Tremor Metric Card
+
+Purpose-built for dashboards. Displays a KPI with optional trend direction and color-coded badges.
+
+<ComponentPreview
+  client:load
+  title="Metric Card"
+  description="Data card showing revenue with upward trend indicator."
+  code={`import { MetricCard } from '@/components/ui/metric-card';
+
+export function Demo() {
+  return (
+    <MetricCard
+      title="Monthly Revenue"
+      metric="$45,231"
+      delta="+12.5%"
+      deltaType="up"
+      subtitle="vs. last month"
+    />
+  );
+}`}
+>
+  <MetricCard
+    client:load
+    title="Monthly Revenue"
+    metric="$45,231"
+    delta="+12.5%"
+    deltaType="up"
+    subtitle="vs. last month"
+  />
+</ComponentPreview>
+
+## When to Use Which
+
+| Card | Best For | Library |
+| :--- | :--- | :--- |
+| shadcn Card | General content, forms, feature lists | shadcn/ui |
+| Metric Card | KPIs, dashboards, analytics panels | Tremor |
+
+## Related
+
+- [Metric Card](/docs/tremor-metric-card) — Full Tremor metric card documentation
+- [Buttons](/docs/buttons) — Action elements commonly placed inside cards

@@ -1,0 +1,75 @@
+---
+title: "Magic UI"
+description: "Animated, high-impact components for landing pages, marketing surfaces, and premium user experiences."
+library: "Magic UI"
+---
+
+import { ComponentPreview } from '@/components/mdx/ComponentPreview';
+import { ShimmerButton } from '@/components/mdx/ShimmerButton';
+
+## Overview
+
+**Magic UI** is a collection of animated React components designed for marketing and landing page surfaces. Where shadcn/ui focuses on functional UI primitives, Magic UI focuses on **visual impact** — shimmer effects, particle animations, gradient flows, and text reveals.
+
+## Available Components
+
+| Component | Category | Status | Description |
+| :--- | :--- | :--- | :--- |
+| [Shimmer Button](/docs/magic-ui-shimmer-button) | Buttons | Stable | CTA button with rotating shimmer border |
+| Animated Gradient | Backgrounds | Planned | Flowing gradient mesh background |
+| Text Reveal | Typography | Planned | Character-by-character text animation |
+| Particles | Backgrounds | Planned | Interactive particle field background |
+
+## Featured: Shimmer Button
+
+<ComponentPreview
+  client:load
+  title="Shimmer Button"
+  description="A gradient button with a rotating conic-gradient shimmer effect."
+  code={`import { ShimmerButton } from '@/components/ui/shimmer-button';
+
+export function Hero() {
+  return (
+    <div className="flex gap-4">
+      <ShimmerButton>Start Building →</ShimmerButton>
+      <ShimmerButton shimmerDuration="2s">
+        Quick Shimmer
+      </ShimmerButton>
+    </div>
+  );
+}`}
+>
+  <div className="flex flex-col items-center gap-4 sm:flex-row">
+    <ShimmerButton client:load>Start Building →</ShimmerButton>
+    <ShimmerButton client:load shimmerDuration="2s" className="px-8 py-4 text-base">
+      Quick Shimmer
+    </ShimmerButton>
+  </div>
+</ComponentPreview>
+
+## Installation
+
+```bash
+npx magicui add shimmer-button
+```
+
+Or copy the component source directly from the [Shimmer Button docs](/docs/magic-ui-shimmer-button).
+
+## Design Philosophy
+
+- **Motion with purpose** — Animations guide attention to key actions, not distract from them.
+- **Performance** — Uses CSS animations and `transform-gpu` for hardware acceleration.
+- **Theme-aware** — Components adapt to light/dark mode via CSS custom properties.
+- **Composable** — Magic UI components accept `className` and `children` props for full customization.
+
+## When to Use Magic UI
+
+✅ **Use for**: Landing page CTAs, product tours, marketing hero sections, sign-up prompts.
+
+❌ **Avoid for**: Dense data tables, admin dashboards, form-heavy workflows (use shadcn/ui instead).
+
+## Related
+
+- [Shimmer Button](/docs/magic-ui-shimmer-button) — Full component documentation
+- [Buttons](/docs/buttons) — All button components compared
+- [shadcn/ui](/docs/libraries/shadcn) — Functional primitives that complement Magic UI

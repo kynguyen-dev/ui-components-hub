@@ -1,63 +1,56 @@
 ---
-import { Header } from '@/components/layout/Header';
-import { Sidebar } from '@/components/layout/Sidebar';
-import { ThemeProvider } from '@/components/ThemeProvider';
+import SiteHeader from '@/components/layout/SiteHeader.astro';
+import SiteFooter from '@/components/layout/SiteFooter.astro';
 import '@/styles/global.css';
 
 interface Props {
 	title?: string;
+	description?: string;
 }
 
-const { title = "UI Components Hub" } = Astro.props;
+const {
+	title = "UI Components Hub",
+	description = "Discover, document, and ship polished UI components with Astro, Starlight, and React islands.",
+} = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<script is:inline>
+			const storageKey = 'starlight-theme';
 			const getThemePreference = () => {
-				if (typeof localStorage !== 'undefined' && localStorage.getItem('ui-theme')) {
-					return localStorage.getItem('ui-theme');
+				if (typeof localStorage !== 'undefined') {
+					const stored = localStorage.getItem(storageKey);
+					if (stored === 'light' || stored === 'dark') return stored;
 				}
-				return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+				return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
 			};
 
 			const setTheme = () => {
 				const theme = getThemePreference();
-				const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-				document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+				document.documentElement.dataset.theme = theme;
+				document.documentElement.classList[theme === 'dark' ? 'add' : 'remove']('dark');
 			};
 
 			setTheme();
- 
-			if (typeof localStorage !== 'undefined') {
-				const observer = new MutationObserver(() => {
-					const isDark = document.documentElement.classList.contains('dark');
-					localStorage.setItem('ui-theme', isDark ? 'dark' : 'light');
-				});
-				observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-			}
 
 			document.addEventListener('astro:after-swap', setTheme);
 		</script>
 	</head>
 	<body class="min-h-screen bg-background font-sans antialiased">
-		<ThemeProvider client:load>
-			<div class="relative flex min-h-screen flex-col">
-				<Header client:load />
-				<div class="flex-1 flex flex-col md:flex-row">
-					<Sidebar client:load className="fixed top-14 z-30 -ml-2 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 md:sticky md:block md:w-64 border-r" />
-					<main class="flex-1 px-4 py-6 md:px-8">
-						<slot />
-					</main>
-				</div>
-			</div>
-		</ThemeProvider>
+		<div class="relative flex min-h-screen flex-col">
+			<SiteHeader />
+			<main class="flex-1">
+				<slot />
+			</main>
+			<SiteFooter />
+		</div>
 	</body>
 </html>

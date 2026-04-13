@@ -1,43 +1,67 @@
-# Astro Starter Kit: Minimal
+# UI Components Hub
 
-```sh
-npm create astro@latest -- --template minimal
-```
+UI Components Hub is a hybrid **Astro + Starlight** documentation platform for browsing UI patterns, shipping component docs, and embedding interactive React islands only where they add value.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Stack
 
-## 🚀 Project Structure
+- Astro 6 with TypeScript strict mode
+- Starlight for `/docs/**` documentation pages
+- React islands via `@astrojs/react`
+- MDX and content collections for typed docs metadata
+- Tailwind CSS v4 + shadcn/ui for custom marketing and catalog pages
+- Nanostores for lightweight shared UI state
 
-Inside of your Astro project, you'll see the following folders and files:
+## Project shape
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/
+├── components/
+│   ├── demos/         # React islands used by docs previews
+│   ├── docs/          # MDX authoring primitives
+│   └── ui/            # shadcn/ui primitives
+├── content/
+│   └── docs/
+│       └── docs/      # Starlight content routed under /docs
+├── lib/
+│   └── docs.ts        # Typed helper layer for navigation, catalog, and related items
+├── pages/
+│   ├── index.astro
+│   └── components/
+└── styles/
+    ├── global.css
+    └── starlight.css
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Key ideas
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- `src/content/docs/docs/**` is the source of truth for docs metadata.
+- Marketing pages (`/` and `/components`) read from content helpers instead of hardcoded navigation.
+- Starlight handles sidebar, TOC, search, and docs page chrome.
+- React islands are used for demos such as preview cards and animated showcases.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Commands
 
-## 🧞 Commands
+```bash
+pnpm install
+pnpm dev
+pnpm check
+pnpm build
+```
 
-All commands are run from the root of the project, from a terminal:
+## Content model
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+The `docs` collection extends Starlight frontmatter with UI Hub specific fields:
 
-## 👀 Want to learn more?
+- `entryType`
+- `category`
+- `tags`
+- `library`
+- `status`
+- `featured`
+- `order`
+- `toc`
+- `demo`
+- `source`
+- `dependencies`
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+These fields drive catalog summaries, featured cards, and future related-content experiences without duplicating config across the site.

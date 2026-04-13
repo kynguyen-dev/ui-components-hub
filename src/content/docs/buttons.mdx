@@ -1,0 +1,75 @@
+---
+title: "Buttons"
+description: "High-signal action primitives for CTAs, toolbars, and inline command surfaces across multiple libraries."
+category: "Buttons"
+---
+
+import { ComponentPreview } from '@/components/mdx/ComponentPreview';
+import { ShimmerButton } from '@/components/mdx/ShimmerButton';
+import { Button } from '@/components/mdx/MdxButton';
+
+## Overview
+
+Buttons are the most frequently used interactive elements. The hub aggregates button components from **shadcn/ui** and **Magic UI**, giving you options ranging from minimal to high-impact.
+
+## shadcn/ui Button
+
+The foundation button from shadcn/ui, built on Radix UI's Slot primitive with support for multiple variants.
+
+<ComponentPreview
+  client:load
+  title="Button Variants"
+  description="Default, secondary, outline, destructive, and ghost variants."
+  code={`import { Button } from '@/components/ui/button';
+
+export function Demo() {
+  return (
+    <div className="flex flex-wrap gap-3">
+      <Button>Default</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="destructive">Destructive</Button>
+      <Button variant="ghost">Ghost</Button>
+    </div>
+  );
+}`}
+>
+  <div className="flex flex-wrap items-center gap-3">
+    <Button client:load>Default</Button>
+    <Button client:load variant="secondary">Secondary</Button>
+    <Button client:load variant="outline">Outline</Button>
+    <Button client:load variant="destructive">Destructive</Button>
+    <Button client:load variant="ghost">Ghost</Button>
+  </div>
+</ComponentPreview>
+
+## Magic UI Shimmer Button
+
+A premium animated button with a rotating shimmer border effect. Perfect for primary CTAs.
+
+<ComponentPreview
+  client:load
+  title="Shimmer Button"
+  description="Gradient button with rotating conic-gradient shimmer animation."
+  code={`import { ShimmerButton } from '@/components/ui/shimmer-button';
+
+export function Demo() {
+  return <ShimmerButton>Get Started Free</ShimmerButton>;
+}`}
+>
+  <ShimmerButton client:load>Get Started Free</ShimmerButton>
+</ComponentPreview>
+
+## When to Use Which
+
+| Button | Best For | Library |
+| :--- | :--- | :--- |
+| Default | Forms, dialogs, standard actions | shadcn/ui |
+| Outline | Secondary actions, cancel buttons | shadcn/ui |
+| Ghost | Navigation, toolbar items | shadcn/ui |
+| Shimmer | Landing page CTAs, sign-up prompts | Magic UI |
+
+## Related
+
+- [Shimmer Button](/docs/magic-ui-shimmer-button) — Full documentation for the Magic UI shimmer button
+- [Cards](/docs/cards) — Often paired with button actions

@@ -1,0 +1,69 @@
+---
+title: "Shimmer Button"
+description: "A beautiful animated button with a rotating shimmer border effect. Perfect for CTAs and premium landing pages."
+library: "Magic UI"
+category: "Buttons"
+published: true
+---
+
+import { ComponentPreview } from '@/components/mdx/ComponentPreview';
+import { ShimmerButton } from '@/components/mdx/ShimmerButton';
+
+## Overview
+
+The **Shimmer Button** is a high-impact call-to-action component from the Magic UI family. It features a rotating conic-gradient shimmer that traces the button border, creating a premium "glow" effect that draws the user's eye without being distracting.
+
+Use this component for:
+
+- Primary CTAs on landing pages
+- Sign-up or upgrade prompts
+- Any action that needs extra visual weight
+
+## Preview
+
+<ComponentPreview
+  client:load
+  title="Default Shimmer Button"
+  description="A gradient button with a rotating shimmer border animation."
+  code={`import { ShimmerButton } from '@/components/ui/shimmer-button';
+
+export function Demo() {
+  return (
+    <ShimmerButton>
+      Get Started Free
+    </ShimmerButton>
+  );
+}`}
+>
+  <div className="flex flex-col items-center gap-4">
+    <ShimmerButton client:load>
+      Get Started Free
+    </ShimmerButton>
+    <ShimmerButton client:load className="text-base px-8 py-4">
+      Upgrade to Pro →
+    </ShimmerButton>
+  </div>
+</ComponentPreview>
+
+## Installation
+
+```bash
+npx magicui add shimmer-button
+```
+
+## Props
+
+| Prop             | Type     | Default     | Description                              |
+| :--------------- | :------- | :---------- | :--------------------------------------- |
+| `shimmerColor`   | `string` | `#ffffff`   | Color of the shimmer highlight           |
+| `shimmerSize`    | `string` | `0.05em`    | Width of the shimmer beam                |
+| `borderRadius`   | `string` | `100px`     | Border radius of the button              |
+| `shimmerDuration`| `string` | `3s`        | Duration of one full shimmer rotation    |
+| `className`      | `string` | —           | Additional Tailwind classes              |
+| `children`       | `node`   | —           | Button content                           |
+
+## Usage Notes
+
+- The shimmer animation uses `conic-gradient` with CSS custom properties for full customizability.
+- The button includes a `transform-gpu` utility for hardware-accelerated transforms.
+- Works beautifully in both light and dark modes.

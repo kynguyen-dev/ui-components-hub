@@ -3,12 +3,13 @@ import { atom, onMount } from 'nanostores';
 export type Theme = 'light' | 'dark' | 'system';
 
 export const $theme = atom<Theme>('system');
+const storageKey = 'starlight-theme';
 
 // Initialize on mount (client-side only)
 onMount($theme, () => {
   if (typeof localStorage !== 'undefined') {
-    const saved = localStorage.getItem('ui-theme') as Theme | null;
-    if (saved) {
+    const saved = localStorage.getItem(storageKey) as 'light' | 'dark' | null;
+    if (saved === 'light' || saved === 'dark') {
       $theme.set(saved);
     }
   }
@@ -17,15 +18,21 @@ onMount($theme, () => {
   const unsubscribe = $theme.subscribe((theme) => {
     if (typeof document !== 'undefined') {
       const root = document.documentElement;
-      root.classList.remove('light', 'dark');
+      const effectiveTheme =
+        theme === 'system'
+          ? window.matchMedia('(prefers-color-scheme: light)').matches
+            ? 'light'
+            : 'dark'
+          : theme;
 
-      let effectiveTheme = theme;
+      root.dataset.theme = effectiveTheme;
+      root.classList.toggle('dark', effectiveTheme === 'dark');
+
       if (theme === 'system') {
-        effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        localStorage.removeItem(storageKey);
+      } else {
+        localStorage.setItem(storageKey, theme);
       }
-
-      root.classList.add(effectiveTheme);
-      localStorage.setItem('ui-theme', theme);
     }
   });
 
