@@ -2,7 +2,7 @@
 import MainLayout from '@/layouts/MainLayout.astro';
 import { ArrowUpRight, BadgeInfo, Boxes, Layers3, Sparkles } from 'lucide-react';
 import { getCategorySummaries, getFeaturedComponentEntries, getLibrarySummaries } from '@/lib/docs';
-import { docsSidebarGroups, isActiveLink } from '@/lib/docs-sidebar';
+import DocsSidebarNav from '@/components/layout/DocsSidebarNav.astro';
 
 const [categories, featuredComponents, libraries] = await Promise.all([
   getCategorySummaries(),
@@ -26,34 +26,8 @@ const sectionLinks = [
 >
   <section class="docs-shell">
     <aside class="docs-sidebar">
-      <div class="docs-sidebar-inner">
-        {docsSidebarGroups.map((group) => (
-          <div class="docs-nav-group">
-            <p class="docs-nav-title">{group.title}</p>
-            <nav class="docs-subnav" aria-label={group.title}>
-              {group.items.map((item) => (
-                <a
-                  class:list={[
-                    'docs-subnav-link',
-                    isActiveLink(item.href, currentPath) && 'is-active',
-                  ]}
-                  href={item.href}
-                >
-                  <span>{item.label}</span>
-                  {item.badge && (
-                    <span class:list={[
-                      'docs-badge',
-                      item.badge === 'new' && 'docs-badge--new',
-                      item.badge === 'popular' && 'docs-badge--popular',
-                    ]}>
-                      {item.badge}
-                    </span>
-                  )}
-                </a>
-              ))}
-            </nav>
-          </div>
-        ))}
+      <div class="docs-sidebar-inner pb-12">
+        <DocsSidebarNav currentPath={currentPath} />
       </div>
     </aside>
 
@@ -258,69 +232,6 @@ const sectionLinks = [
     max-height: calc(100vh - 4rem);
     overflow: auto;
     padding: 1.25rem 1rem 2rem;
-  }
-
-  .docs-nav-group + .docs-nav-group {
-    margin-top: 1rem;
-  }
-
-  .docs-nav-title {
-    margin: 0 0 0.45rem;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted-foreground);
-  }
-
-  .docs-subnav {
-    display: grid;
-    gap: 0.1rem;
-  }
-
-  .docs-subnav-link {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    border-radius: 0.65rem;
-    padding: 0.45rem 0.7rem;
-    font-size: 0.88rem;
-    line-height: 1.35;
-    color: var(--muted-foreground);
-    text-decoration: none;
-    transition: background-color 0.2s ease, color 0.2s ease;
-  }
-
-  .docs-subnav-link:hover,
-  .docs-subnav-link.is-active {
-    background: color-mix(in srgb, var(--primary) 8%, transparent);
-    color: var(--foreground);
-  }
-
-  .docs-subnav-link.is-active {
-    font-weight: 600;
-  }
-
-  .docs-badge {
-    font-size: 0.62rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    border-radius: 999px;
-    padding: 0.15rem 0.5rem;
-    background: var(--muted);
-    color: var(--muted-foreground);
-  }
-
-  .docs-badge--new {
-    background: color-mix(in srgb, #8b5cf6 12%, transparent);
-    color: #8b5cf6;
-  }
-
-  .docs-badge--popular {
-    background: color-mix(in srgb, #3b82f6 12%, transparent);
-    color: #3b82f6;
   }
 
   .docs-main {

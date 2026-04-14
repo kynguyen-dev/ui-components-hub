@@ -24,6 +24,22 @@ export const docsSidebarGroups: SidebarGroup[] = [
     ],
   },
   {
+    title: 'Libraries',
+    items: [
+      { href: '/docs/libraries/magic-ui', label: 'Magic UI' },
+      { href: '/docs/libraries/kokonut-ui', label: 'Kokonut UI' },
+      { href: '/docs/libraries/cult-ui', label: 'Cult UI' },
+      { href: '/docs/libraries/tremor', label: 'Tremor' },
+      { href: '/docs/libraries/daisyui', label: 'DaisyUI' },
+      { href: '/docs/libraries/shadcn', label: 'Shadcn' },
+      { href: '/docs/libraries/aceternity-ui', label: 'Aceternity UI' },
+      { href: '/docs/libraries/origin-ui', label: 'Origin UI' },
+      { href: '/docs/libraries/nextui', label: 'NextUI' },
+      { href: '/docs/libraries/flowbite', label: 'Flowbite' },
+      { href: '/docs/libraries/preline', label: 'Preline UI' },
+    ],
+  },
+  {
     title: 'Component Groups',
     items: [
       { href: '/docs/backgrounds', label: 'Backgrounds' },
@@ -32,15 +48,6 @@ export const docsSidebarGroups: SidebarGroup[] = [
       { href: '/docs/hero-sections', label: 'Hero Sections' },
       { href: '/docs/layouts', label: 'Layouts' },
       { href: '/docs/typography', label: 'Typography' },
-    ],
-  },
-  {
-    title: 'Libraries',
-    items: [
-      { href: '/docs/libraries/astro', label: 'Astro' },
-      { href: '/docs/libraries/shadcn', label: 'shadcn/ui', badge: 'popular' },
-      { href: '/docs/libraries/magic-ui', label: 'Magic UI', badge: 'new' },
-      { href: '/docs/libraries/tremor', label: 'Tremor' },
     ],
   },
 ];

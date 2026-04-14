@@ -1,0 +1,54 @@
+---
+import { docsSidebarGroups, isActiveLink } from '@/lib/docs-sidebar';
+import { ChevronRight } from 'lucide-react';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+---
+
+<div class="flex flex-col gap-4">
+  {docsSidebarGroups.map((group) => (
+    <details class="group/nav relative" open>
+      <summary class="flex items-center gap-2 cursor-pointer list-none text-sm font-medium text-foreground hover:text-primary transition-colors select-none [&::-webkit-details-marker]:hidden">
+        <ChevronRight className="h-4 w-4 shrink-0 transition-transform duration-200 group-open/nav:rotate-90 text-muted-foreground" />
+        {group.title}
+      </summary>
+      
+      <div class="mt-2 ml-[0.55rem]">
+        <nav 
+          class="pl-4 border-l border-border/80 flex flex-col gap-0.5" 
+          aria-label={group.title}
+        >
+          {group.items.map((item) => {
+            const active = isActiveLink(item.href, currentPath);
+            return (
+              <a
+                class:list={[
+                  'relative flex items-center justify-between gap-2 py-1.5 px-3 rounded-md text-[0.88rem] transition-colors',
+                  active 
+                    ? 'bg-primary/5 text-primary font-medium' 
+                    : 'text-muted-foreground hover:bg-primary/5 hover:text-foreground'
+                ]}
+                href={item.href}
+              >
+                <span>{item.label}</span>
+                {item.badge && (
+                  <span class:list={[
+                    'text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground',
+                    item.badge === 'new' && 'bg-purple-500/10 text-purple-600 dark:text-purple-400',
+                    item.badge === 'popular' && 'bg-blue-500/10 text-blue-600 dark:text-blue-400',
+                  ]}>
+                    {item.badge}
+                  </span>
+                )}
+              </a>
+            );
+          })}
+        </nav>
+      </div>
+    </details>
+  ))}
+</div>

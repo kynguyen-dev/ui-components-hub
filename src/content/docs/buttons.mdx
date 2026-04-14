@@ -5,7 +5,9 @@ category: "Buttons"
 ---
 
 import { ComponentPreview } from '@/components/mdx/ComponentPreview';
-import { ShimmerButton } from '@/components/mdx/ShimmerButton';
+import { ShimmerButton } from '@/components/ui/shimmer-button';
+import { RainbowButton } from '@/components/ui/rainbow-button';
+import { RippleButton } from '@/components/ui/ripple-button';
 import { Button } from '@/components/mdx/MdxButton';
 
 ## Overview
@@ -13,6 +15,8 @@ import { Button } from '@/components/mdx/MdxButton';
 Buttons are the most frequently used interactive elements. The hub aggregates button components from **shadcn/ui** and **Magic UI**, giving you options ranging from minimal to high-impact.
 
 ## shadcn/ui Button
+
+[Official Documentation ↗](https://ui.shadcn.com/docs/components/button)
 
 The foundation button from shadcn/ui, built on Radix UI's Slot primitive with support for multiple variants.
 
@@ -43,9 +47,32 @@ export function Demo() {
   </div>
 </ComponentPreview>
 
-## Magic UI Shimmer Button
+## Magic UI Buttons
 
-A premium animated button with a rotating shimmer border effect. Perfect for primary CTAs.
+[Official Documentation ↗](https://magicui.design/docs/components/shimmer-button)
+
+Magic UI provides premium animated buttons. We have currently documented the Rainbow, Shimmer, and Ripple button variants.
+
+<ComponentPreview
+  client:load
+  title="Rainbow Button Variants"
+  description="Gradient bordered buttons in default and outline variants."
+  code={`import { RainbowButton } from '@/components/ui/rainbow-button';
+
+export function Demo() {
+  return (
+    <div className="flex gap-4">
+      <RainbowButton>Default Variant</RainbowButton>
+      <RainbowButton variant="outline">Outline Variant</RainbowButton>
+    </div>
+  );
+}`}
+>
+  <div className="flex flex-wrap gap-4 items-center justify-center">
+    <RainbowButton client:load>Default Variant</RainbowButton>
+    <RainbowButton client:load variant="outline">Outline Variant</RainbowButton>
+  </div>
+</ComponentPreview>
 
 <ComponentPreview
   client:load
@@ -57,7 +84,24 @@ export function Demo() {
   return <ShimmerButton>Get Started Free</ShimmerButton>;
 }`}
 >
-  <ShimmerButton client:load>Get Started Free</ShimmerButton>
+  <ShimmerButton client:load className="shadow-2xl">
+    <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
+      Get Started Free
+    </span>
+  </ShimmerButton>
+</ComponentPreview>
+
+<ComponentPreview
+  client:load
+  title="Ripple Button with Custom Color"
+  description="A button with a smooth ripple effect on click, configured with custom ripple color."
+  code={`import { RippleButton } from '@/components/ui/ripple-button';
+
+export function Demo() {
+  return <RippleButton rippleColor="#3498db">Click for Custom Ripple</RippleButton>;
+}`}
+>
+  <RippleButton client:load rippleColor="#3498db">Click for Custom Ripple</RippleButton>
 </ComponentPreview>
 
 ## When to Use Which
@@ -68,6 +112,220 @@ export function Demo() {
 | Outline | Secondary actions, cancel buttons | shadcn/ui |
 | Ghost | Navigation, toolbar items | shadcn/ui |
 | Shimmer | Landing page CTAs, sign-up prompts | Magic UI |
+
+## Tremor Button
+
+[Official Documentation ↗](https://tremor.so/docs/components/button)
+
+Tremor provides components tailored for dashboards and data visualizations.
+
+<ComponentPreview
+  client:load
+  title="Tremor Button Default"
+  description="A standard button used across Tremor dashboards."
+  code={`import { Button } from '@tremor/react';
+
+export function Demo() {
+  return (
+    <div className="flex gap-4">
+      <Button variant="primary">Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="light">Light</Button>
+    </div>
+  );
+}`}
+>
+  <div className="flex gap-4 flex-wrap">
+    <button className="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-md shadow-sm transition-colors">Primary</button>
+    <button className="bg-white hover:bg-gray-50 text-gray-700 text-sm font-medium py-2 px-4 border border-gray-300 rounded-md shadow-sm transition-colors">Secondary</button>
+  </div>
+</ComponentPreview>
+
+## daisyUI Button
+
+[Official Documentation ↗](https://daisyui.com/components/button/)
+
+daisyUI builds on top of Tailwind CSS to provide semantic class names instead of utility piles.
+
+<ComponentPreview
+  client:load
+  title="daisyUI Button"
+  description="Semantic Tailwind CSS button components."
+  code={`<button className="btn btn-primary">Primary</button>
+<button className="btn btn-secondary">Secondary</button>
+<button className="btn btn-accent">Accent</button>
+<button className="btn btn-ghost">Ghost</button>`}
+>
+  <div className="flex gap-4 flex-wrap">
+    <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg tracking-wide text-sm transition-transform active:scale-95 text-center flex items-center justify-center">Primary</button>
+    <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg tracking-wide text-sm transition-transform active:scale-95 text-center flex items-center justify-center">Secondary</button>
+  </div>
+</ComponentPreview>
+
+## Flowbite Button
+
+[Official Documentation ↗](https://flowbite.com/docs/components/buttons/)
+
+Flowbite offers a massive collection of interactive Tailwind UI components.
+
+<ComponentPreview
+  client:load
+  title="Flowbite Default Button"
+  description="Standard Flowbite component with focus rings."
+  code={`<button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+  Default
+</button>`}
+>
+  <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 transition-colors">Flowbite Default</button>
+</ComponentPreview>
+
+## NextUI Button
+
+[Official Documentation ↗](https://nextui.org/docs/components/button)
+
+NextUI provides beautiful, fast, and modern React UI library components out-of-the-box.
+
+<ComponentPreview
+  client:load
+  title="NextUI Button Variants"
+  description="Solid, fader, bordered, light, flat, ghost, shadow variants."
+  code={`import {Button} from "@nextui-org/react";
+
+export default function App() {
+  return (
+    <div className="flex flex-wrap gap-4 items-center">
+      <Button color="primary">Solid</Button>
+      <Button color="primary" variant="bordered">Bordered</Button>
+      <Button color="primary" variant="flat">Flat</Button>
+    </div>
+  );
+}`}
+>
+  <div className="flex flex-wrap gap-4 items-center">
+    <button className="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-[12px] shadow-sm transition-opacity active:opacity-75">Solid</button>
+    <button className="bg-transparent hover:bg-blue-50 text-blue-500 border-2 border-blue-500 text-sm font-medium py-1.5 px-4 rounded-[12px] transition-opacity active:opacity-75">Bordered</button>
+  </div>
+</ComponentPreview>
+
+## preline Button
+
+[Official Documentation ↗](https://preline.co/docs/button.html)
+
+Preline UI is an open-source set of prebuilt UI components based on Tailwind CSS.
+
+<ComponentPreview
+  client:load
+  title="preline Button"
+  description="Base button system from preline."
+  code={`<button type="button" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none">
+  Solid
+</button>`}
+>
+  <button type="button" className="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none transition-colors">
+    Preline Solid
+  </button>
+</ComponentPreview>
+
+## Aceternity UI Button
+
+[Official Documentation ↗](https://ui.aceternity.com/components/tailwindcss-buttons)
+
+Aceternity UI offers highly animated, creative components, often relying on pure Tailwind CSS classes and minimal JS.
+
+<ComponentPreview
+  client:load
+  title="Aceternity Border Magic Button"
+  description="A button with a smooth animated gradient border."
+  code={`<button className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+  <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+  <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-8 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+    Border Magic
+  </span>
+</button>`}
+>
+  <div className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px]">
+    <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
+    <div className="relative inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-900 px-8 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+      Border Magic (Mock)
+    </div>
+  </div>
+</ComponentPreview>
+
+## Origin UI Button
+
+[Official Documentation ↗](https://originui.com/)
+
+Origin UI focuses on premium, crafted interfaces and subtle interactions with pixel-perfect strokes.
+
+<ComponentPreview
+  client:load
+  title="Origin UI Base Button"
+  description="Minimal and deeply crafted buttons."
+  code={`<button className="inline-flex h-9 items-center justify-center rounded-md bg-zinc-900 px-5 py-2 text-sm font-medium text-zinc-50 shadow transition-colors hover:bg-zinc-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90 dark:focus-visible:ring-zinc-300">
+  Standard Button
+</button>`}
+>
+  <button className="inline-flex h-9 items-center justify-center rounded-md bg-zinc-900 px-5 py-2 text-sm font-medium text-zinc-50 shadow transition-colors hover:bg-zinc-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90 dark:focus-visible:ring-zinc-300">
+    Origin UI Button
+  </button>
+</ComponentPreview>
+
+## Kokonut UI Button
+
+[Official Documentation ↗](https://kokonutui.com/)
+
+Kokonut UI offers slick, modern aesthetics often leaning into dark mode glows and glassmorphism.
+
+<ComponentPreview
+  client:load
+  title="Kokonut UI Glow Button"
+  description="A button with refined borders and subtle glow states."
+  code={`<button className="group relative inline-flex items-center justify-center gap-2 rounded-full bg-zinc-900 border border-zinc-800 px-6 py-2 text-sm font-medium tracking-wide text-white transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+  <span>Kokonut Button</span>
+  <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+  </svg>
+</button>`}
+>
+  <button className="group relative inline-flex items-center justify-center gap-2 rounded-full bg-zinc-900 border border-zinc-800 px-6 py-2 text-sm font-medium tracking-wide text-white transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]">
+    <span>Kokonut Button</span>
+    <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+</ComponentPreview>
+
+## cult-ui Button
+
+[Official Documentation ↗](https://www.cult-ui.com/docs/components/button)
+
+cult-ui provides aggressive animations and distinct neo-brutalist design languages heavily requested by modern creators.
+
+<ComponentPreview
+  client:load
+  title="Cult UI Neo-brutalist Button"
+  description="Highlighting highly stylized interactions."
+  code={`<button className="relative px-6 py-3 group font-bold tracking-widest outline-none bg-transparent inline-block">
+  <span className="absolute inset-0 bg-yellow-400 border-2 border-zinc-900 group-hover:-translate-x-1.5 group-hover:-translate-y-1.5 transition-transform"></span>
+  <span className="relative text-zinc-900 z-10 block translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform">CULT BUTTON</span>
+</button>`}
+>
+  <button className="relative px-6 py-3 group font-bold tracking-widest outline-none bg-transparent inline-block">
+    <span className="absolute inset-0 bg-yellow-400 border-2 border-zinc-900 group-hover:-translate-x-1.5 group-hover:-translate-y-1.5 transition-transform"></span>
+    <span className="relative text-zinc-900 dark:text-zinc-900 z-10 block translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform">CULT BUTTON</span>
+  </button>
+</ComponentPreview>
+
+## Expanded Comparison
+
+| Button | Best For | Library |
+| :--- | :--- | :--- |
+| Default | Forms, dialogs, standard actions | shadcn/ui |
+| Shimmer | Landing page CTAs, sign-up prompts | Magic UI |
+| Borderless/Flat | Content-heavy dashboards | NextUI / Tremor |
+| Semantic Sets | Rapid prototyping, distinct alert states | daisyUI |
+| Neo-brutalism | Creative portfolios, stylized web apps | cult-ui / kokonut UI |
+
 
 ## Related
 

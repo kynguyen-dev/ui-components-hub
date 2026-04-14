@@ -5,7 +5,12 @@ library: "Magic UI"
 ---
 
 import { ComponentPreview } from '@/components/mdx/ComponentPreview';
-import { ShimmerButton } from '@/components/mdx/ShimmerButton';
+import { ShimmerButton } from '@/components/ui/shimmer-button';
+import { RainbowButton } from '@/components/ui/rainbow-button';
+import { RippleButton } from '@/components/ui/ripple-button';
+import { ShinyButton } from '@/components/ui/shiny-button';
+import { PulsatingButton } from '@/components/ui/pulsating-button';
+import { InteractiveHoverButton } from '@/components/ui/interactive-hover-button';
 
 ## Overview
 
@@ -15,12 +20,54 @@ import { ShimmerButton } from '@/components/mdx/ShimmerButton';
 
 | Component | Category | Status | Description |
 | :--- | :--- | :--- | :--- |
-| [Shimmer Button](/docs/magic-ui-shimmer-button) | Buttons | Stable | CTA button with rotating shimmer border |
-| Animated Gradient | Backgrounds | Planned | Flowing gradient mesh background |
-| Text Reveal | Typography | Planned | Character-by-character text animation |
-| Particles | Backgrounds | Planned | Interactive particle field background |
+| **Shimmer Button** | Buttons | Stable | CTA button with rotating shimmer border |
+| **Rainbow Button** | Buttons | Stable | Animated gradient border for primary actions |
+| **Ripple Button**  | Buttons | Stable | Minimal button with water ripple effect onClick |
+| **Shiny Button**   | Buttons | Stable | Elegant button with moving light reflection mask |
+| **Pulsating Button**| Buttons | Stable | Highlighted button with pulsing alert animation |
+| **Interactive Hover Button** | Buttons | Stable | Animated transition button with arrow reveal |
 
-## Featured: Shimmer Button
+## Buttons
+
+### Rainbow Button
+
+<ComponentPreview
+  client:load
+  title="Rainbow Button"
+  description="Gradient bordered buttons in default and outline variants."
+  code={`import { RainbowButton } from '@/components/ui/rainbow-button';
+
+export function Demo() {
+  return (
+    <div className="flex gap-4">
+      <RainbowButton>Default Variant</RainbowButton>
+      <RainbowButton variant="outline">Outline Variant</RainbowButton>
+    </div>
+  );
+}`}
+>
+  <div className="flex flex-wrap gap-4 items-center justify-center">
+    <RainbowButton client:load>Default Variant</RainbowButton>
+    <RainbowButton client:load variant="outline">Outline Variant</RainbowButton>
+  </div>
+</ComponentPreview>
+
+### Shiny Button
+
+<ComponentPreview
+  client:load
+  title="Shiny Button"
+  description="An elegant, modern button with a smooth animated shine effect."
+  code={`import { ShinyButton } from '@/components/ui/shiny-button';
+
+export function Demo() {
+  return <ShinyButton>Pro Upgrade</ShinyButton>;
+}`}
+>
+  <ShinyButton client:load>Pro Upgrade</ShinyButton>
+</ComponentPreview>
+
+### Shimmer Button
 
 <ComponentPreview
   client:load
@@ -28,23 +75,56 @@ import { ShimmerButton } from '@/components/mdx/ShimmerButton';
   description="A gradient button with a rotating conic-gradient shimmer effect."
   code={`import { ShimmerButton } from '@/components/ui/shimmer-button';
 
-export function Hero() {
-  return (
-    <div className="flex gap-4">
-      <ShimmerButton>Start Building →</ShimmerButton>
-      <ShimmerButton shimmerDuration="2s">
-        Quick Shimmer
-      </ShimmerButton>
-    </div>
-  );
+export function Demo() {
+  return <ShimmerButton>Start Building →</ShimmerButton>;
 }`}
 >
-  <div className="flex flex-col items-center gap-4 sm:flex-row">
-    <ShimmerButton client:load>Start Building →</ShimmerButton>
-    <ShimmerButton client:load shimmerDuration="2s" className="px-8 py-4 text-base">
-      Quick Shimmer
-    </ShimmerButton>
-  </div>
+  <ShimmerButton client:load className="px-8 py-4 text-base">Start Building →</ShimmerButton>
+</ComponentPreview>
+
+### Pulsating Button
+
+<ComponentPreview
+  client:load
+  title="Pulsating Button"
+  description="An attention-grabbing button with a continuous pulse animation, perfect for updates."
+  code={`import { PulsatingButton } from '@/components/ui/pulsating-button';
+
+export function Demo() {
+  return <PulsatingButton>1 New Message</PulsatingButton>;
+}`}
+>
+  <PulsatingButton client:load>1 New Message</PulsatingButton>
+</ComponentPreview>
+
+### Ripple Button
+
+<ComponentPreview
+  client:load
+  title="Ripple Button"
+  description="A button with a smooth ripple effect on click, configured with custom ripple color."
+  code={`import { RippleButton } from '@/components/ui/ripple-button';
+
+export function Demo() {
+  return <RippleButton rippleColor="#3498db">Click for Custom Ripple</RippleButton>;
+}`}
+>
+  <RippleButton client:load rippleColor="#3498db">Click for Custom Ripple</RippleButton>
+</ComponentPreview>
+
+### Interactive Hover Button
+
+<ComponentPreview
+  client:load
+  title="Interactive Hover Button"
+  description="A lively button that morphs into an extended state with an arrow upon hovering."
+  code={`import { InteractiveHoverButton } from '@/components/ui/interactive-hover-button';
+
+export function Demo() {
+  return <InteractiveHoverButton>Explore Features</InteractiveHoverButton>;
+}`}
+>
+  <InteractiveHoverButton client:load>Explore Features</InteractiveHoverButton>
 </ComponentPreview>
 
 ## Installation
