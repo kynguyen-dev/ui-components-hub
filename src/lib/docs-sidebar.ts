@@ -47,6 +47,7 @@ export const docsSidebarGroups: SidebarGroup[] = [
       { href: '/docs/cards', label: 'Cards' },
       { href: '/docs/hero-sections', label: 'Hero Sections' },
       { href: '/docs/layouts', label: 'Layouts' },
+      { href: '/docs/magic-ui-text-animations', label: 'Text Animations', badge: 'Magic UI' },
       { href: '/docs/typography', label: 'Typography' },
     ],
   },

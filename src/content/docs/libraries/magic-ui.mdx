@@ -5,6 +5,11 @@ library: "Magic UI"
 ---
 
 import { ComponentPreview } from '@/components/mdx/ComponentPreview';
+import {
+  MagicTextAnimationsCoreSection,
+  MagicTextAnimationsExpressiveSection,
+  MagicTextAnimationsMotionSection,
+} from '@/components/mdx/MagicTextAnimationsShowcase';
 import { ShimmerButton } from '@/components/ui/shimmer-button';
 import { RainbowButton } from '@/components/ui/rainbow-button';
 import { RippleButton } from '@/components/ui/ripple-button';
@@ -26,6 +31,7 @@ import { InteractiveHoverButton } from '@/components/ui/interactive-hover-button
 | **Shiny Button**   | Buttons | Stable | Elegant button with moving light reflection mask |
 | **Pulsating Button**| Buttons | Stable | Highlighted button with pulsing alert animation |
 | **Interactive Hover Button** | Buttons | Stable | Animated transition button with arrow reveal |
+| **Text Animations** | Typography | Stable | Full Magic UI text animation set including typing, reveal, marquee, sparkle, highlight, and 3D flip effects |
 
 ## Buttons
 
@@ -126,6 +132,22 @@ export function Demo() {
 >
   <InteractiveHoverButton client:load>Explore Features</InteractiveHoverButton>
 </ComponentPreview>
+
+## Text Animations
+
+Magic UI also ships a broad set of animated typography components for hero copy, stats, product messaging, and editorial motion treatments.
+
+### Core Text Animations
+
+<MagicTextAnimationsCoreSection client:load />
+
+### Motion Treatments
+
+<MagicTextAnimationsMotionSection client:load />
+
+### Expressive Headline Effects
+
+<MagicTextAnimationsExpressiveSection client:load />
 
 ## Installation
 
