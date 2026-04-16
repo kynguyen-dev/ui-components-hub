@@ -34,6 +34,18 @@ import { Safari } from '@/components/ui/safari';
 import { Iphone } from '@/components/ui/iphone';
 import { Android } from '@/components/ui/android';
 import { FlickeringGrid } from '@/components/ui/flickering-grid';
+import {
+  AnimatedGridPattern,
+  RetroGrid,
+  Ripple,
+  DotPattern,
+  GridPattern,
+  HexagonPattern,
+  StripedPattern,
+  InteractiveGridPattern,
+  LightRays,
+  NoiseTexture,
+} from '@/components/ui/magic-backgrounds';
 
 ## Overview
 
@@ -291,43 +303,423 @@ import { FlickeringGrid } from '@/components/ui/flickering-grid';
 
 ### Animated Grid Pattern
 
-Animated square grids that sweep or pulse across the page, useful for launch sections and product hero backdrops.
+<ComponentPreview
+  client:load
+  description="Animated square cells and sweeping highlights for launch sections, hero canvases, and product marketing surfaces."
+  code={`import { AnimatedGridPattern } from '@/components/ui/magic-backgrounds';
+
+export function Demo() {
+  return (
+    <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-white">
+      <AnimatedGridPattern className="opacity-90" />
+      <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
+        <div className="max-w-xl text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">
+            Launch Surface
+          </p>
+          <h3 className="mt-4 text-4xl font-semibold tracking-tight text-slate-950">
+            Animated Grid Pattern
+          </h3>
+          <p className="mt-3 text-sm text-slate-600">
+            Use it behind hero messaging when you want motion without heavy illustration.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-white">
+    <AnimatedGridPattern className="opacity-90" />
+    <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
+      <div className="max-w-xl text-center">
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">
+          Launch Surface
+        </p>
+        <h3 className="mt-4 text-4xl font-semibold tracking-tight text-slate-950">
+          Animated Grid Pattern
+        </h3>
+        <p className="mt-3 text-sm text-slate-600">
+          Use it behind hero messaging when you want motion without heavy illustration.
+        </p>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
 
 ### Retro Grid
 
-Perspective grid lines with a synthwave-inspired horizon treatment, ideal for bold hero art and demo splash screens.
+<ComponentPreview
+  client:load
+  description="Perspective grid lines with a clean synthwave-style horizon treatment for bold splash screens and launch intros."
+  code={`import { RetroGrid } from '@/components/ui/magic-backgrounds';
+
+export function Demo() {
+  return (
+    <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-white">
+      <RetroGrid />
+      <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
+        <h3 className="bg-gradient-to-r from-fuchsia-600 via-violet-600 to-orange-400 bg-clip-text text-5xl font-semibold tracking-tight text-transparent">
+          Retro Grid
+        </h3>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-white">
+    <RetroGrid />
+    <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
+      <h3 className="bg-gradient-to-r from-fuchsia-600 via-violet-600 to-orange-400 bg-clip-text text-5xl font-semibold tracking-tight text-transparent">
+        Retro Grid
+      </h3>
+    </div>
+  </div>
+</ComponentPreview>
 
 ### Ripple
 
-Expanding concentric wave backgrounds that create motion around a focal callout or centered CTA.
+<ComponentPreview
+  client:load
+  description="Expanding concentric waves that draw attention toward a centered CTA, stat, or announcement."
+  code={`import { Ripple } from '@/components/ui/magic-backgrounds';
+
+export function Demo() {
+  return (
+    <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-white">
+      <Ripple />
+      <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
+        <div className="rounded-full border border-sky-200/70 bg-white/85 px-8 py-8 text-center shadow-[0_24px_80px_rgba(56,189,248,0.12)] backdrop-blur">
+          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-sky-600">
+            Centered CTA
+          </p>
+          <h3 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
+            Ripple
+          </h3>
+        </div>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-white">
+    <Ripple />
+    <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
+      <div className="rounded-full border border-sky-200/70 bg-white/85 px-8 py-8 text-center shadow-[0_24px_80px_rgba(56,189,248,0.12)] backdrop-blur">
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-sky-600">
+          Centered CTA
+        </p>
+        <h3 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
+          Ripple
+        </h3>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
 
 ### Dot Pattern
 
-Low-contrast dotted fields that add structure without overpowering cards, docs layouts, or product screenshots.
+<ComponentPreview
+  client:load
+  description="Low-contrast dotted structure that adds depth to docs layouts and screenshot framing without stealing attention."
+  code={`import { DotPattern } from '@/components/ui/magic-backgrounds';
+
+export function Demo() {
+  return (
+    <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-white">
+      <DotPattern className="text-slate-300/80" />
+      <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
+        <div className="w-full max-w-lg rounded-[24px] border border-slate-200/80 bg-white/90 p-8 shadow-sm">
+          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">
+            Documentation Surface
+          </p>
+          <h3 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950">
+            Dot Pattern
+          </h3>
+          <p className="mt-3 text-sm text-slate-600">
+            Ideal when you want texture behind cards and product screenshots.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-white">
+    <DotPattern className="text-slate-300/80" />
+    <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
+      <div className="w-full max-w-lg rounded-[24px] border border-slate-200/80 bg-white/90 p-8 shadow-sm">
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">
+          Documentation Surface
+        </p>
+        <h3 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950">
+          Dot Pattern
+        </h3>
+        <p className="mt-3 text-sm text-slate-600">
+          Ideal when you want texture behind cards and product screenshots.
+        </p>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
 
 ### Grid Pattern
 
-Clean technical grid lines for editor-inspired interfaces, blueprint motifs, or documentation surfaces.
+<ComponentPreview
+  client:load
+  description="A clean technical grid with optional highlighted cells for blueprint motifs, editors, and developer-facing product surfaces."
+  code={`import { GridPattern } from '@/components/ui/magic-backgrounds';
 
-### Hexagon Pattern New
+export function Demo() {
+  return (
+    <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-white">
+      <GridPattern />
+      <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
+        <div className="max-w-lg text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">
+            Blueprint Surface
+          </p>
+          <h3 className="mt-4 text-4xl font-semibold tracking-tight text-slate-950">
+            Grid Pattern
+          </h3>
+        </div>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-white">
+    <GridPattern />
+    <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
+      <div className="max-w-lg text-center">
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">
+          Blueprint Surface
+        </p>
+        <h3 className="mt-4 text-4xl font-semibold tracking-tight text-slate-950">
+          Grid Pattern
+        </h3>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
 
-A honeycomb-style geometric field for more stylized tech branding and dense decorative backgrounds.
+### Hexagon Pattern
 
-### Striped Pattern New
+<ComponentPreview
+  client:load
+  description="A honeycomb-style field that feels more branded and stylized than a square grid, especially for dense hero backdrops."
+  code={`import { HexagonPattern } from '@/components/ui/magic-backgrounds';
 
-Directional striped layers that create momentum and work well behind badges, stat blocks, or hero copy.
+export function Demo() {
+  return (
+    <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-white">
+      <HexagonPattern />
+      <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
+        <div className="rounded-[24px] border border-slate-200/80 bg-white/85 px-8 py-7 text-center backdrop-blur">
+          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">
+            Branded Geometry
+          </p>
+          <h3 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950">
+            Hexagon Pattern
+          </h3>
+        </div>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-white">
+    <HexagonPattern />
+    <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
+      <div className="rounded-[24px] border border-slate-200/80 bg-white/85 px-8 py-7 text-center backdrop-blur">
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">
+          Branded Geometry
+        </p>
+        <h3 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950">
+          Hexagon Pattern
+        </h3>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
+
+### Striped Pattern
+
+<ComponentPreview
+  client:load
+  description="Directional stripe layers that add momentum behind hero copy, badges, stats, and callout sections."
+  code={`import { StripedPattern } from '@/components/ui/magic-backgrounds';
+
+export function Demo() {
+  return (
+    <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-white">
+      <StripedPattern />
+      <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
+        <div className="max-w-lg text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">
+            Momentum Layer
+          </p>
+          <h3 className="mt-4 text-4xl font-semibold tracking-tight text-slate-950">
+            Striped Pattern
+          </h3>
+        </div>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-white">
+    <StripedPattern />
+    <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
+      <div className="max-w-lg text-center">
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">
+          Momentum Layer
+        </p>
+        <h3 className="mt-4 text-4xl font-semibold tracking-tight text-slate-950">
+          Striped Pattern
+        </h3>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
 
 ### Interactive Grid Pattern
 
-Pointer-reactive grid backgrounds that add subtle motion as users move through a hero or showcase section.
+<ComponentPreview
+  client:load
+  description="A pointer-reactive grid that brightens around the cursor to add subtle motion to hero and showcase layouts."
+  code={`import { InteractiveGridPattern } from '@/components/ui/magic-backgrounds';
 
-### Light Rays New
+export function Demo() {
+  return (
+    <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-white">
+      <InteractiveGridPattern />
+      <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
+        <div className="rounded-[24px] border border-indigo-200/70 bg-white/80 px-8 py-7 text-center shadow-[0_20px_80px_rgba(99,102,241,0.12)] backdrop-blur">
+          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-indigo-600">
+            Move Your Cursor
+          </p>
+          <h3 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950">
+            Interactive Grid Pattern
+          </h3>
+        </div>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-white">
+    <InteractiveGridPattern />
+    <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
+      <div className="rounded-[24px] border border-indigo-200/70 bg-white/80 px-8 py-7 text-center shadow-[0_20px_80px_rgba(99,102,241,0.12)] backdrop-blur">
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-indigo-600">
+          Move Your Cursor
+        </p>
+        <h3 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950">
+          Interactive Grid Pattern
+        </h3>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
 
-Soft ray-based gradients that simulate volumetric light and work well behind screenshots or centered messaging.
+### Light Rays
+
+<ComponentPreview
+  client:load
+  description="Soft volumetric light beams that sit well behind screenshots, centered headlines, and high-polish launch copy."
+  code={`import { LightRays } from '@/components/ui/magic-backgrounds';
+
+export function Demo() {
+  return (
+    <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-[linear-gradient(180deg,#ffffff_0%,#f5f7ff_100%)]">
+      <LightRays />
+      <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
+        <div className="max-w-lg text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">
+            Atmosphere
+          </p>
+          <h3 className="mt-4 text-4xl font-semibold tracking-tight text-slate-950">
+            Light Rays
+          </h3>
+          <p className="mt-3 text-sm text-slate-600">
+            Useful behind product screenshots and spotlight messaging.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-[linear-gradient(180deg,#ffffff_0%,#f5f7ff_100%)]">
+    <LightRays />
+    <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
+      <div className="max-w-lg text-center">
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">
+          Atmosphere
+        </p>
+        <h3 className="mt-4 text-4xl font-semibold tracking-tight text-slate-950">
+          Light Rays
+        </h3>
+        <p className="mt-3 text-sm text-slate-600">
+          Useful behind product screenshots and spotlight messaging.
+        </p>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
 
 ### Noise Texture
 
-Fine-grain texture overlays for breaking up flat color fills and adding a warmer, less synthetic finish.
+<ComponentPreview
+  client:load
+  description="A fine-grain texture overlay that breaks up flat fills and makes polished surfaces feel less synthetic."
+  code={`import { NoiseTexture } from '@/components/ui/magic-backgrounds';
+
+export function Demo() {
+  return (
+    <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-[linear-gradient(135deg,#f8fafc_0%,#eef2ff_100%)]">
+      <NoiseTexture />
+      <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
+        <div className="w-full max-w-lg rounded-[26px] border border-white/70 bg-white/70 p-8 shadow-[0_24px_80px_rgba(15,23,42,0.08)] backdrop-blur">
+          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">
+            Texture Layer
+          </p>
+          <h3 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950">
+            Noise Texture
+          </h3>
+          <p className="mt-3 text-sm text-slate-600">
+            Blend it over flat fills to add warmth and visual richness.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-[linear-gradient(135deg,#f8fafc_0%,#eef2ff_100%)]">
+    <NoiseTexture />
+    <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
+      <div className="w-full max-w-lg rounded-[26px] border border-white/70 bg-white/70 p-8 shadow-[0_24px_80px_rgba(15,23,42,0.08)] backdrop-blur">
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">
+          Texture Layer
+        </p>
+        <h3 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950">
+          Noise Texture
+        </h3>
+        <p className="mt-3 text-sm text-slate-600">
+          Blend it over flat fills to add warmth and visual richness.
+        </p>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
+
+### Background Catalog
+
+[Official Magic UI Background Docs ↗](https://magicui.design/docs/components)
+
+The live Magic UI catalog currently lists `Flickering Grid`, `Animated Grid Pattern`, `Retro Grid`, `Ripple`, `Dot Pattern`, `Grid Pattern`, `Hexagon Pattern`, `Striped Pattern`, `Interactive Grid Pattern`, `Light Rays`, and `Noise Texture` in the backgrounds group.
 
 ## Text Animations
 

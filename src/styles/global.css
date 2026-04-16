@@ -247,3 +247,68 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes magic-grid-sweep {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -40% 0;
+  }
+}
+
+@keyframes magic-grid-pulse {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+}
+
+@keyframes magic-retro-grid {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(64px);
+  }
+}
+
+@keyframes magic-ripple {
+  0% {
+    transform: scale(0.72);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.65);
+    opacity: 0;
+  }
+}
+
+@keyframes magic-stripes {
+  from {
+    transform: translate3d(-4%, 0, 0) rotate(-6deg);
+  }
+  to {
+    transform: translate3d(4%, 0, 0) rotate(-6deg);
+  }
+}
+
+@keyframes magic-rays {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0) scaleY(0.96);
+  }
+  50% {
+    opacity: 0.72;
+    transform: translateY(14px) scaleY(1.04);
+  }
+}
