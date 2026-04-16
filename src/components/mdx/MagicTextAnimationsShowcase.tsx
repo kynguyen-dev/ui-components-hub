@@ -20,11 +20,9 @@ import { TypingAnimation } from "@/components/ui/typing-animation";
 import { VideoText } from "@/components/ui/video-text";
 import { WordRotate } from "@/components/ui/word-rotate";
 
-export function MagicTextAnimationsCoreSection() {
+export function MagicTextAnimatePreview() {
   return (
-    <section className="space-y-8">
-      <ComponentPreview
-          title="Text Animate"
+    <ComponentPreview
           description="Segment-based motion presets for words, characters, lines, and full text blocks."
           code={`import { TextAnimate } from '@/components/ui/text-animate';
 
@@ -44,10 +42,13 @@ export function Demo() {
           >
             Blur in by character
           </TextAnimate>
-      </ComponentPreview>
+    </ComponentPreview>
+  );
+}
 
-      <ComponentPreview
-          title="Typing Animation"
+export function MagicTypingAnimationPreview() {
+  return (
+    <ComponentPreview
           description="Typewriter effect with looping word sets and cursor control."
           code={`import { TypingAnimation } from '@/components/ui/typing-animation';
 
@@ -70,10 +71,13 @@ export function Demo() {
             pauseDelay={900}
             loop
           />
-      </ComponentPreview>
+    </ComponentPreview>
+  );
+}
 
-      <ComponentPreview
-          title="Line Shadow Text"
+export function MagicLineShadowTextPreview() {
+  return (
+    <ComponentPreview
           description="A moving line-shadow treatment for editorial headlines."
           code={`import { LineShadowText } from '@/components/ui/line-shadow-text';
 
@@ -88,10 +92,13 @@ export function Demo() {
           <LineShadowText className="text-center text-4xl font-black tracking-[-0.06em] md:text-6xl">
             SHADOW PLAY
           </LineShadowText>
-      </ComponentPreview>
+    </ComponentPreview>
+  );
+}
 
-      <ComponentPreview
-          title="Aurora Text"
+export function MagicAuroraTextPreview() {
+  return (
+    <ComponentPreview
           description="Multi-color gradient text with a drifting aurora animation."
           code={`import { AuroraText } from '@/components/ui/aurora-text';
 
@@ -106,10 +113,13 @@ export function Demo() {
           <h3 className="text-center text-4xl font-black tracking-tight md:text-6xl">
             Ship with <AuroraText>atmosphere</AuroraText>
           </h3>
-      </ComponentPreview>
+    </ComponentPreview>
+  );
+}
 
-      <ComponentPreview
-          title="Video Text"
+export function MagicVideoTextPreview() {
+  return (
+    <ComponentPreview
           description="A text mask that fills characters with a looping video texture."
           code={`import { VideoText } from '@/components/ui/video-text';
 
@@ -128,10 +138,13 @@ export function Demo() {
               OCEAN
             </VideoText>
           </div>
-      </ComponentPreview>
+    </ComponentPreview>
+  );
+}
 
-      <ComponentPreview
-          title="Number Ticker"
+export function MagicNumberTickerPreview() {
+  return (
+    <ComponentPreview
           description="In-view number interpolation for KPI callouts and stats."
           code={`import { NumberTicker } from '@/components/ui/number-ticker';
 
@@ -150,16 +163,13 @@ export function Demo() {
               Monthly active sessions
             </p>
           </div>
-      </ComponentPreview>
-    </section>
+    </ComponentPreview>
   );
 }
 
-export function MagicTextAnimationsMotionSection() {
+export function MagicAnimatedShinyTextPreview() {
   return (
-    <section className="space-y-8">
-      <ComponentPreview
-          title="Animated Shiny Text"
+    <ComponentPreview
           description="A subtle light sweep that works well for status chips and microcopy."
           code={`import { AnimatedShinyText } from '@/components/ui/animated-shiny-text';
 
@@ -174,10 +184,13 @@ export function Demo() {
           <AnimatedShinyText className="inline-flex items-center rounded-full border border-black/10 bg-black/5 px-4 py-1 text-sm font-medium dark:border-white/10 dark:bg-white/5">
             Early access is open
           </AnimatedShinyText>
-      </ComponentPreview>
+    </ComponentPreview>
+  );
+}
 
-      <ComponentPreview
-          title="Animated Gradient Text"
+export function MagicAnimatedGradientTextPreview() {
+  return (
+    <ComponentPreview
           description="A looping color band for feature headlines and launch moments."
           code={`import { AnimatedGradientText } from '@/components/ui/animated-gradient-text';
 
@@ -192,10 +205,13 @@ export function Demo() {
           <AnimatedGradientText className="text-center text-4xl font-black tracking-[-0.05em] md:text-6xl">
             MOTION SELLS THE STORY
           </AnimatedGradientText>
-      </ComponentPreview>
+    </ComponentPreview>
+  );
+}
 
-      <ComponentPreview
-          title="Text Reveal"
+export function MagicTextRevealPreview() {
+  return (
+    <ComponentPreview
           description="Scroll-driven word reveal for storytelling sections."
           code={`import { TextReveal } from '@/components/ui/text-reveal';
 
@@ -216,10 +232,13 @@ export function Demo() {
               fold.
             </TextReveal>
           </div>
-      </ComponentPreview>
+    </ComponentPreview>
+  );
+}
 
-      <ComponentPreview
-          title="Hyper Text"
+export function MagicHyperTextPreview() {
+  return (
+    <ComponentPreview
           description="Fast letter scrambling that resolves into the final message."
           code={`import { HyperText } from '@/components/ui/hyper-text';
 
@@ -234,10 +253,13 @@ export function Demo() {
           <HyperText className="text-center text-4xl font-black tracking-[-0.06em] md:text-6xl">
             HYPERDRIVE
           </HyperText>
-      </ComponentPreview>
+    </ComponentPreview>
+  );
+}
 
-      <ComponentPreview
-          title="Word Rotate"
+export function MagicWordRotatePreview() {
+  return (
+    <ComponentPreview
           description="Rotating headline copy for product positioning and value props."
           code={`import { WordRotate } from '@/components/ui/word-rotate';
 
@@ -257,10 +279,13 @@ export function Demo() {
               className="text-center"
             />
           </div>
-      </ComponentPreview>
+    </ComponentPreview>
+  );
+}
 
-      <ComponentPreview
-          title="Scroll Based Velocity"
+export function MagicScrollBasedVelocityPreview() {
+  return (
+    <ComponentPreview
           description="Continuous marquee rows that speed up and reverse with page scroll."
           code={`import { ScrollVelocityContainer, ScrollVelocityRow } from '@/components/ui/scroll-based-velocity';
 
@@ -292,16 +317,13 @@ export function Demo() {
               <span className="mr-8">TAILWIND</span>
             </ScrollVelocityRow>
           </ScrollVelocityContainer>
-      </ComponentPreview>
-    </section>
+    </ComponentPreview>
   );
 }
 
-export function MagicTextAnimationsExpressiveSection() {
+export function MagicSparklesTextPreview() {
   return (
-    <section className="space-y-8">
-      <ComponentPreview
-          title="Sparkles Text"
+    <ComponentPreview
           description="Ambient sparkles around a callout headline."
           code={`import { SparklesText } from '@/components/ui/sparkles-text';
 
@@ -316,10 +338,13 @@ export function Demo() {
           <SparklesText className="text-center text-5xl font-black tracking-tight md:text-6xl">
             Celebrate the launch
           </SparklesText>
-      </ComponentPreview>
+    </ComponentPreview>
+  );
+}
 
-      <ComponentPreview
-          title="Morphing Text"
+export function MagicMorphingTextPreview() {
+  return (
+    <ComponentPreview
           description="Soft blur morphs between phrases for hero sections and brand messages."
           code={`import { MorphingText } from '@/components/ui/morphing-text';
 
@@ -333,10 +358,13 @@ export function Demo() {
             texts={["Launch", "Scale", "Refine"]}
             className="h-24 text-5xl md:h-28 md:text-7xl"
           />
-      </ComponentPreview>
+    </ComponentPreview>
+  );
+}
 
-      <ComponentPreview
-          title="Spinning Text"
+export function MagicSpinningTextPreview() {
+  return (
+    <ComponentPreview
           description="Circular rotating copy that pairs well with badges and hero art."
           code={`import { SpinningText } from '@/components/ui/spinning-text';
 
@@ -358,10 +386,13 @@ export function Demo() {
               Hub
             </div>
           </div>
-      </ComponentPreview>
+    </ComponentPreview>
+  );
+}
 
-      <ComponentPreview
-          title="Text Highlighter"
+export function MagicTextHighlighterPreview() {
+  return (
+    <ComponentPreview
           description="Hand-drawn annotation marks for emphasis in product copy."
           code={`import { Highlighter } from '@/components/ui/highlighter';
 
@@ -380,10 +411,13 @@ export function Demo() {
             </Highlighter>{" "}
             first.
           </p>
-      </ComponentPreview>
+    </ComponentPreview>
+  );
+}
 
-      <ComponentPreview
-          title="Text 3D Flip"
+export function MagicText3DFlipPreview() {
+  return (
+    <ComponentPreview
           description="Hover-triggered dimensional character flips for bold display typography."
           code={`import Text3DFlip from '@/components/ui/text-3d-flip';
 
@@ -402,17 +436,6 @@ export function Demo() {
           >
             Flip to explore
           </Text3DFlip>
-      </ComponentPreview>
-    </section>
-  );
-}
-
-export function MagicTextAnimationsShowcase() {
-  return (
-    <div className="space-y-12">
-      <MagicTextAnimationsCoreSection />
-      <MagicTextAnimationsMotionSection />
-      <MagicTextAnimationsExpressiveSection />
-    </div>
+    </ComponentPreview>
   );
 }

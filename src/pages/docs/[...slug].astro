@@ -315,6 +315,13 @@ const libraryColorClass = libraryColors[entry.data.library] ?? 'bg-primary/10 te
     max-height: calc(100vh - 4rem);
     overflow: auto;
     padding: 1.25rem 1rem 2rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .docs-rail-inner::-webkit-scrollbar {
+    width: 0;
+    height: 0;
   }
 
   .docs-rail-label {

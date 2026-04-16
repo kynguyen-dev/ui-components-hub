@@ -6,9 +6,23 @@ library: "Magic UI"
 
 import { ComponentPreview } from '@/components/mdx/ComponentPreview';
 import {
-  MagicTextAnimationsCoreSection,
-  MagicTextAnimationsExpressiveSection,
-  MagicTextAnimationsMotionSection,
+  MagicAnimatedGradientTextPreview,
+  MagicAnimatedShinyTextPreview,
+  MagicAuroraTextPreview,
+  MagicHyperTextPreview,
+  MagicLineShadowTextPreview,
+  MagicMorphingTextPreview,
+  MagicNumberTickerPreview,
+  MagicScrollBasedVelocityPreview,
+  MagicSparklesTextPreview,
+  MagicSpinningTextPreview,
+  MagicText3DFlipPreview,
+  MagicTextAnimatePreview,
+  MagicTextHighlighterPreview,
+  MagicTextRevealPreview,
+  MagicTypingAnimationPreview,
+  MagicVideoTextPreview,
+  MagicWordRotatePreview,
 } from '@/components/mdx/MagicTextAnimationsShowcase';
 import { ShimmerButton } from '@/components/ui/shimmer-button';
 import { RainbowButton } from '@/components/ui/rainbow-button';
@@ -16,6 +30,10 @@ import { RippleButton } from '@/components/ui/ripple-button';
 import { ShinyButton } from '@/components/ui/shiny-button';
 import { PulsatingButton } from '@/components/ui/pulsating-button';
 import { InteractiveHoverButton } from '@/components/ui/interactive-hover-button';
+import { Safari } from '@/components/ui/safari';
+import { Iphone } from '@/components/ui/iphone';
+import { Android } from '@/components/ui/android';
+import { FlickeringGrid } from '@/components/ui/flickering-grid';
 
 ## Overview
 
@@ -25,13 +43,10 @@ import { InteractiveHoverButton } from '@/components/ui/interactive-hover-button
 
 | Component | Category | Status | Description |
 | :--- | :--- | :--- | :--- |
-| **Shimmer Button** | Buttons | Stable | CTA button with rotating shimmer border |
-| **Rainbow Button** | Buttons | Stable | Animated gradient border for primary actions |
-| **Ripple Button**  | Buttons | Stable | Minimal button with water ripple effect onClick |
-| **Shiny Button**   | Buttons | Stable | Elegant button with moving light reflection mask |
-| **Pulsating Button**| Buttons | Stable | Highlighted button with pulsing alert animation |
-| **Interactive Hover Button** | Buttons | Stable | Animated transition button with arrow reveal |
-| **Text Animations** | Typography | Stable | Full Magic UI text animation set including typing, reveal, marquee, sparkle, highlight, and 3D flip effects |
+| **Buttons** | Actions | Stable | Premium animated button patterns including shimmer, rainbow, ripple, shiny, pulsating, and interactive hover styles |
+| **Device Mocks** | Showcase | Stable | Browser and mobile device mockups for screenshots, demos, and launch visuals |
+| **Backgrounds** | Decorative | New | Animated grid, pattern, ripple, and texture effects for hero sections and ambient page framing |
+| **Text Animations** | Typography | Stable | Animated text treatments for hero copy, storytelling sections, stats, and expressive headlines |
 
 ## Buttons
 
@@ -39,7 +54,6 @@ import { InteractiveHoverButton } from '@/components/ui/interactive-hover-button
 
 <ComponentPreview
   client:load
-  title="Rainbow Button"
   description="Gradient bordered buttons in default and outline variants."
   code={`import { RainbowButton } from '@/components/ui/rainbow-button';
 
@@ -62,7 +76,6 @@ export function Demo() {
 
 <ComponentPreview
   client:load
-  title="Shiny Button"
   description="An elegant, modern button with a smooth animated shine effect."
   code={`import { ShinyButton } from '@/components/ui/shiny-button';
 
@@ -77,7 +90,6 @@ export function Demo() {
 
 <ComponentPreview
   client:load
-  title="Shimmer Button"
   description="A gradient button with a rotating conic-gradient shimmer effect."
   code={`import { ShimmerButton } from '@/components/ui/shimmer-button';
 
@@ -92,7 +104,6 @@ export function Demo() {
 
 <ComponentPreview
   client:load
-  title="Pulsating Button"
   description="An attention-grabbing button with a continuous pulse animation, perfect for updates."
   code={`import { PulsatingButton } from '@/components/ui/pulsating-button';
 
@@ -107,7 +118,6 @@ export function Demo() {
 
 <ComponentPreview
   client:load
-  title="Ripple Button"
   description="A button with a smooth ripple effect on click, configured with custom ripple color."
   code={`import { RippleButton } from '@/components/ui/ripple-button';
 
@@ -122,7 +132,6 @@ export function Demo() {
 
 <ComponentPreview
   client:load
-  title="Interactive Hover Button"
   description="A lively button that morphs into an extended state with an arrow upon hovering."
   code={`import { InteractiveHoverButton } from '@/components/ui/interactive-hover-button';
 
@@ -133,21 +142,264 @@ export function Demo() {
   <InteractiveHoverButton client:load>Explore Features</InteractiveHoverButton>
 </ComponentPreview>
 
+## Device Mocks
+
+Magic UI also includes polished browser and handset shells for product screenshots, landing page demos, and animated app previews.
+
+### Safari
+
+<ComponentPreview
+  client:load
+  description="A Safari browser window mockup with support for image and video content."
+  code={`import { Safari } from '@/components/ui/safari';
+
+export function Demo() {
+  return (
+    <Safari
+      className="w-full max-w-4xl"
+      url="magicui.design"
+      imageSrc="https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=1600&auto=format&fit=crop"
+    />
+  );
+}`}
+>
+  <Safari
+    client:load
+    className="w-full max-w-4xl"
+    url="magicui.design"
+    imageSrc="https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=1600&auto=format&fit=crop"
+  />
+</ComponentPreview>
+
+### iPhone
+
+<ComponentPreview
+  client:load
+  description="An iPhone mockup for mobile screenshots and app preview imagery."
+  code={`import { Iphone } from '@/components/ui/iphone';
+
+export function Demo() {
+  return (
+    <Iphone
+      className="w-full max-w-[260px]"
+      src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200&auto=format&fit=crop"
+    />
+  );
+}`}
+>
+  <Iphone
+    client:load
+    className="w-full max-w-[260px]"
+    src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200&auto=format&fit=crop"
+  />
+</ComponentPreview>
+
+### Android
+
+<ComponentPreview
+  client:load
+  description="An Android device mockup for showcasing native or responsive mobile screens."
+  code={`import { Android } from '@/components/ui/android';
+
+export function Demo() {
+  return (
+    <Android
+      className="w-full max-w-[250px]"
+      src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1200&auto=format&fit=crop"
+    />
+  );
+}`}
+>
+  <Android
+    className="w-full max-w-[250px]"
+    src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1200&auto=format&fit=crop"
+  />
+</ComponentPreview>
+
+## Backgrounds
+
+Magic UI ships a strong set of decorative background primitives for hero sections, section separators, and atmospheric content framing. The current catalog includes:
+
+### Flickering Grid
+
+<ComponentPreview
+  client:load
+  description="A flickering SVG grid background adapted from the official Magic UI Flickering Grid pattern."
+  code={`import { FlickeringGrid } from '@/components/ui/flickering-grid';
+
+export function Demo() {
+  return (
+    <div className="relative w-full overflow-hidden rounded-3xl border border-border bg-background">
+      <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
+        <div className="max-w-md text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+            Ambient Background
+          </p>
+          <h3 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">
+            Flickering Grid
+          </h3>
+          <p className="mt-3 text-sm text-muted-foreground">
+            A subtle animated grid for hero sections and launch surfaces.
+          </p>
+        </div>
+      </div>
+      <FlickeringGrid
+        className="absolute inset-0 z-0 h-full w-full"
+        squareSize={4}
+        gridGap={8}
+        flickerChance={0.28}
+        color="rgb(99, 102, 241)"
+        maxOpacity={0.22}
+      />
+    </div>
+  );
+}`}
+>
+  <div className="relative w-full overflow-hidden rounded-3xl border border-border bg-background">
+    <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
+      <div className="max-w-md text-center">
+        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+          Ambient Background
+        </p>
+        <h3 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">
+          Flickering Grid
+        </h3>
+        <p className="mt-3 text-sm text-muted-foreground">
+          A subtle animated grid for hero sections and launch surfaces.
+        </p>
+      </div>
+    </div>
+    <FlickeringGrid
+      client:load
+      className="absolute inset-0 z-0 h-full w-full"
+      squareSize={4}
+      gridGap={8}
+      flickerChance={0.28}
+      color="rgb(99, 102, 241)"
+      maxOpacity={0.22}
+    />
+  </div>
+</ComponentPreview>
+
+The `FlickeringGrid` implementation follows the official Magic UI usage shape:
+
+```tsx
+import { FlickeringGrid } from '@/components/ui/flickering-grid';
+
+<FlickeringGrid />
+```
+
+### Animated Grid Pattern
+
+Animated square grids that sweep or pulse across the page, useful for launch sections and product hero backdrops.
+
+### Retro Grid
+
+Perspective grid lines with a synthwave-inspired horizon treatment, ideal for bold hero art and demo splash screens.
+
+### Ripple
+
+Expanding concentric wave backgrounds that create motion around a focal callout or centered CTA.
+
+### Dot Pattern
+
+Low-contrast dotted fields that add structure without overpowering cards, docs layouts, or product screenshots.
+
+### Grid Pattern
+
+Clean technical grid lines for editor-inspired interfaces, blueprint motifs, or documentation surfaces.
+
+### Hexagon Pattern New
+
+A honeycomb-style geometric field for more stylized tech branding and dense decorative backgrounds.
+
+### Striped Pattern New
+
+Directional striped layers that create momentum and work well behind badges, stat blocks, or hero copy.
+
+### Interactive Grid Pattern
+
+Pointer-reactive grid backgrounds that add subtle motion as users move through a hero or showcase section.
+
+### Light Rays New
+
+Soft ray-based gradients that simulate volumetric light and work well behind screenshots or centered messaging.
+
+### Noise Texture
+
+Fine-grain texture overlays for breaking up flat color fills and adding a warmer, less synthetic finish.
+
 ## Text Animations
 
 Magic UI also ships a broad set of animated typography components for hero copy, stats, product messaging, and editorial motion treatments.
 
-### Core Text Animations
+### Text Animate
 
-<MagicTextAnimationsCoreSection client:load />
+<MagicTextAnimatePreview client:load />
 
-### Motion Treatments
+### Typing Animation
 
-<MagicTextAnimationsMotionSection client:load />
+<MagicTypingAnimationPreview client:load />
 
-### Expressive Headline Effects
+### Line Shadow Text
 
-<MagicTextAnimationsExpressiveSection client:load />
+<MagicLineShadowTextPreview client:load />
+
+### Aurora Text
+
+<MagicAuroraTextPreview client:load />
+
+### Video Text
+
+<MagicVideoTextPreview client:load />
+
+### Number Ticker
+
+<MagicNumberTickerPreview client:load />
+
+### Shiny Text
+
+<MagicAnimatedShinyTextPreview client:load />
+
+### Gradient Text
+
+<MagicAnimatedGradientTextPreview client:load />
+
+### Text Reveal
+
+<MagicTextRevealPreview client:load />
+
+### Hyper Text
+
+<MagicHyperTextPreview client:load />
+
+### Word Rotate
+
+<MagicWordRotatePreview client:load />
+
+### Scroll Based Velocity
+
+<MagicScrollBasedVelocityPreview client:load />
+
+### Morphing Text
+
+<MagicMorphingTextPreview client:load />
+
+### Sparkles Text
+
+<MagicSparklesTextPreview client:load />
+
+### Spinning Text
+
+<MagicSpinningTextPreview client:load />
+
+### Text Highlighter
+
+<MagicTextHighlighterPreview client:load />
+
+### Text 3D Flip
+
+<MagicText3DFlipPreview client:load />
 
 ## Installation
 
