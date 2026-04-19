@@ -70,7 +70,7 @@ export function ComponentPreview({
             {/* Subtle gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.02] via-transparent to-primary/[0.02]" />
 
-            <div className="relative flex min-h-[280px] items-center justify-center p-8 md:p-12">
+            <div className="relative flex min-h-[560px] items-center justify-center p-8 md:p-12">
               {children}
             </div>
           </div>
@@ -107,7 +107,7 @@ export function ComponentPreview({
             </div>
 
             {/* Code content */}
-            <div className="overflow-x-auto bg-[#0d0d1a] p-4">
+            <div className="min-h-[516px] overflow-x-auto bg-[#0d0d1a] p-4">
               <pre className="text-[13px] leading-relaxed">
                 <code className="text-white/80">{code}</code>
               </pre>

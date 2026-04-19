@@ -34,9 +34,10 @@ import { Safari } from '@/components/ui/safari';
 import { Iphone } from '@/components/ui/iphone';
 import { Android } from '@/components/ui/android';
 import { FlickeringGrid } from '@/components/ui/flickering-grid';
+import { NeonGradientCard } from '@/components/ui/neon-gradient-card';
+import { RetroGrid as MagicUiRetroGrid } from '@/components/ui/retro-grid';
 import {
   AnimatedGridPattern,
-  RetroGrid,
   Ripple,
   DotPattern,
   GridPattern,
@@ -58,6 +59,7 @@ import {
 | **Buttons** | Actions | Stable | Premium animated button patterns including shimmer, rainbow, ripple, shiny, pulsating, and interactive hover styles |
 | **Device Mocks** | Showcase | Stable | Browser and mobile device mockups for screenshots, demos, and launch visuals |
 | **Backgrounds** | Decorative | New | Animated grid, pattern, ripple, and texture effects for hero sections and ambient page framing |
+| **Special Effects** | Accent | New | High-impact visual treatments like neon cards, beams, particles, and animated emphasis layers |
 | **Text Animations** | Typography | Stable | Animated text treatments for hero copy, storytelling sections, stats, and expressive headlines |
 
 ## Buttons
@@ -352,30 +354,49 @@ export function Demo() {
 <ComponentPreview
   client:load
   description="Perspective grid lines with a clean synthwave-style horizon treatment for bold splash screens and launch intros."
-  code={`import { RetroGrid } from '@/components/ui/magic-backgrounds';
+  code={`import { RetroGrid } from "@/registry/magicui/retro-grid";
 
 export function Demo() {
   return (
-    <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-white">
-      <RetroGrid />
-      <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
-        <h3 className="bg-gradient-to-r from-fuchsia-600 via-violet-600 to-orange-400 bg-clip-text text-5xl font-semibold tracking-tight text-transparent">
-          Retro Grid
-        </h3>
-      </div>
+    <div className="bg-background relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border">
+      <span className="pointer-events-none z-10 bg-linear-to-b from-[#ffd319] via-[#ff2975] to-[#8c1eff] bg-clip-text text-center text-7xl leading-none font-bold tracking-tighter whitespace-pre-wrap text-transparent">
+        Retro Grid
+      </span>
+      <MagicUiRetroGrid />
     </div>
   );
 }`}
 >
-  <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-white">
-    <RetroGrid />
-    <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
-      <h3 className="bg-gradient-to-r from-fuchsia-600 via-violet-600 to-orange-400 bg-clip-text text-5xl font-semibold tracking-tight text-transparent">
-        Retro Grid
-      </h3>
-    </div>
+  <div className="bg-background relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border">
+    <span className="pointer-events-none z-10 bg-linear-to-b from-[#ffd319] via-[#ff2975] to-[#8c1eff] bg-clip-text text-center text-7xl leading-none font-bold tracking-tighter whitespace-pre-wrap text-transparent">
+      Retro Grid
+    </span>
+    <MagicUiRetroGrid />
   </div>
 </ComponentPreview>
+
+Install with the official Magic UI command:
+
+```bash
+pnpm dlx shadcn@latest add @magicui/retro-grid
+```
+
+Official usage:
+
+```tsx
+import { RetroGrid } from "@/registry/magicui/retro-grid";
+
+export function RetroGridDemo() {
+  return (
+    <div className="bg-background relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border">
+      <span className="pointer-events-none z-10 bg-linear-to-b from-[#ffd319] via-[#ff2975] to-[#8c1eff] bg-clip-text text-center text-7xl leading-none font-bold tracking-tighter whitespace-pre-wrap text-transparent">
+        Retro Grid
+      </span>
+      <RetroGrid />
+    </div>
+  );
+}
+```
 
 ### Ripple
 
@@ -421,45 +442,19 @@ export function Demo() {
 
 <ComponentPreview
   client:load
-  description="Low-contrast dotted structure that adds depth to docs layouts and screenshot framing without stealing attention."
-  code={`import { DotPattern } from '@/components/ui/magic-backgrounds';
+  description="A background dot pattern made with SVGs, fully customizable using Tailwind CSS."
+  code={`import { DotPattern } from "@/registry/magicui/dot-pattern";
 
-export function Demo() {
+export function DotPatternDemo() {
   return (
-    <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-white">
-      <DotPattern className="text-slate-300/80" />
-      <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
-        <div className="w-full max-w-lg rounded-[24px] border border-slate-200/80 bg-white/90 p-8 shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">
-            Documentation Surface
-          </p>
-          <h3 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950">
-            Dot Pattern
-          </h3>
-          <p className="mt-3 text-sm text-slate-600">
-            Ideal when you want texture behind cards and product screenshots.
-          </p>
-        </div>
-      </div>
+    <div className="bg-background relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border">
+      <DotPattern className="text-muted-foreground/30 [mask-image:radial-gradient(300px_circle_at_center,white,transparent)]" />
     </div>
   );
 }`}
 >
-  <div className="relative w-full overflow-hidden rounded-[28px] border border-border bg-white">
-    <DotPattern className="text-slate-300/80" />
-    <div className="relative z-10 flex min-h-[320px] items-center justify-center p-10">
-      <div className="w-full max-w-lg rounded-[24px] border border-slate-200/80 bg-white/90 p-8 shadow-sm">
-        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">
-          Documentation Surface
-        </p>
-        <h3 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950">
-          Dot Pattern
-        </h3>
-        <p className="mt-3 text-sm text-slate-600">
-          Ideal when you want texture behind cards and product screenshots.
-        </p>
-      </div>
-    </div>
+  <div className="bg-background relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border">
+    <DotPattern className="text-muted-foreground/30 [mask-image:radial-gradient(300px_circle_at_center,white,transparent)]" />
   </div>
 </ComponentPreview>
 
@@ -720,6 +715,130 @@ export function Demo() {
 [Official Magic UI Background Docs ↗](https://magicui.design/docs/components)
 
 The live Magic UI catalog currently lists `Flickering Grid`, `Animated Grid Pattern`, `Retro Grid`, `Ripple`, `Dot Pattern`, `Grid Pattern`, `Hexagon Pattern`, `Striped Pattern`, `Interactive Grid Pattern`, `Light Rays`, and `Noise Texture` in the backgrounds group.
+
+## Special Effects
+
+Magic UI also includes high-contrast effect components for premium cards, motion accents, beams, and interactive highlights.
+
+### Neon Gradient Card
+
+<ComponentPreview
+  client:load
+  description="A beautiful neon card effect."
+  code={`import { NeonGradientCard } from "@/registry/magicui/neon-gradient-card";
+
+export function NeonGradientCardDemo() {
+  return (
+    <NeonGradientCard className="mx-auto flex h-56 w-[24rem] items-center justify-center text-center md:h-64 md:w-[28rem]">
+      <div className="pointer-events-none relative z-10 flex flex-col items-center justify-center leading-none">
+        <span
+          className="text-center text-4xl font-bold tracking-tighter text-transparent md:text-5xl"
+          style={{
+            backgroundImage: "linear-gradient(180deg, #ff2975 10%, #ff8aab 45%, #c4f5ff 100%)",
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+          }}
+        >
+          Neon
+        </span>
+        <span
+          className="mt-2 text-center text-4xl font-bold tracking-tighter text-transparent md:text-5xl"
+          style={{
+            backgroundImage: "linear-gradient(180deg, #ff2975 10%, #ff8aab 45%, #c4f5ff 100%)",
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+          }}
+        >
+          Gradient
+        </span>
+        <div className="relative mt-2">
+          <span
+            className="block text-center text-4xl font-bold tracking-tighter text-transparent md:text-5xl"
+            style={{
+              backgroundImage: "linear-gradient(180deg, #ff8aab 10%, #d6efff 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+            }}
+          >
+            Card
+          </span>
+          <span
+            aria-hidden="true"
+            className="absolute inset-x-0 top-full -mt-1 block text-center text-4xl font-bold tracking-tighter text-transparent opacity-30 blur-[1px] md:text-5xl"
+            style={{
+              backgroundImage: "linear-gradient(180deg, #ff8aab 10%, #d6efff 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              transform: "scaleY(-0.38)",
+              transformOrigin: "top",
+            }}
+          >
+            Card
+          </span>
+        </div>
+      </div>
+    </NeonGradientCard>
+  );
+}`}
+>
+  <NeonGradientCard client:load className="mx-auto flex h-56 w-[24rem] items-center justify-center text-center md:h-64 md:w-[28rem]">
+    <div className="pointer-events-none relative z-10 flex flex-col items-center justify-center leading-none">
+      <span
+        className="text-center text-4xl font-bold tracking-tighter text-transparent md:text-5xl"
+        style={{
+          backgroundImage: "linear-gradient(180deg, #ff2975 10%, #ff8aab 45%, #c4f5ff 100%)",
+          WebkitBackgroundClip: "text",
+          backgroundClip: "text",
+        }}
+      >
+        Neon
+      </span>
+      <span
+        className="mt-2 text-center text-4xl font-bold tracking-tighter text-transparent md:text-5xl"
+        style={{
+          backgroundImage: "linear-gradient(180deg, #ff2975 10%, #ff8aab 45%, #c4f5ff 100%)",
+          WebkitBackgroundClip: "text",
+          backgroundClip: "text",
+        }}
+      >
+        Gradient
+      </span>
+      <div className="relative mt-2">
+        <span
+          className="block text-center text-4xl font-bold tracking-tighter text-transparent md:text-5xl"
+          style={{
+            backgroundImage: "linear-gradient(180deg, #ff8aab 10%, #d6efff 100%)",
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+          }}
+        >
+          Card
+        </span>
+        <span
+          aria-hidden="true"
+          className="absolute inset-x-0 top-full -mt-1 block text-center text-4xl font-bold tracking-tighter text-transparent opacity-30 blur-[1px] md:text-5xl"
+          style={{
+            backgroundImage: "linear-gradient(180deg, #ff8aab 10%, #d6efff 100%)",
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            transform: "scaleY(-0.38)",
+            transformOrigin: "top",
+          }}
+        >
+          Card
+        </span>
+      </div>
+    </div>
+  </NeonGradientCard>
+</ComponentPreview>
+
+Install with the official Magic UI command:
+
+```bash
+pnpm dlx shadcn@latest add @magicui/neon-gradient-card
+```
+
+[Official Magic UI Special Effects Docs ↗](https://magicui.design/docs/components/neon-gradient-card)
 
 ## Text Animations
 

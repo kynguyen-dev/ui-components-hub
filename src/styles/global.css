@@ -129,7 +129,13 @@
     background-position: calc(100% + var(--shiny-width)) 0;}}
   @keyframes gradient {
   to {
-    background-position: var(--bg-size, 300%) 0;}}}
+    background-position: var(--bg-size, 300%) 0;}}
+  --animate-background-position-spin: background-position-spin 3000ms infinite alternate;
+  @keyframes background-position-spin {
+  0% {
+    background-position: top center;}
+  100% {
+    background-position: bottom center;}}}
 
 :root {
   --background: oklch(1 0 0);
@@ -310,5 +316,14 @@
   50% {
     opacity: 0.72;
     transform: translateY(14px) scaleY(1.04);
+  }
+}
+
+@keyframes magic-background-position-spin {
+  0% {
+    background-position: top center;
+  }
+  100% {
+    background-position: bottom center;
   }
 }

@@ -57,21 +57,47 @@ export function AnimatedGridPattern({
   );
 }
 
-export function RetroGrid({ className }: DivProps) {
+export function RetroGrid({
+  className,
+  angle = 65,
+  cellSize = 60,
+  opacity = 0.5,
+  lightLineColor = "rgba(156, 163, 175, 0.55)",
+  darkLineColor = "rgba(255, 255, 255, 0.14)",
+}: DivProps & {
+  angle?: number;
+  cellSize?: number;
+  opacity?: number;
+  lightLineColor?: string;
+  darkLineColor?: string;
+}) {
   return (
     <div
       aria-hidden="true"
-      className={cn("absolute inset-0 overflow-hidden bg-white", className)}
+      className={cn("absolute inset-0 overflow-hidden bg-background", className)}
+      style={
+        {
+          "--retro-grid-angle": `${angle}deg`,
+          "--retro-grid-cell-size": `${cellSize}px`,
+          "--retro-grid-opacity": opacity,
+          "--retro-grid-light": lightLineColor,
+          "--retro-grid-dark": darkLineColor,
+        } as React.CSSProperties
+      }
     >
-      <div className="absolute inset-x-0 top-0 h-[54%] bg-gradient-to-b from-white via-white to-white/70" />
-      <div className="absolute inset-x-0 top-[42%] h-px bg-gradient-to-r from-transparent via-fuchsia-300/80 to-transparent" />
-      <div className="absolute inset-x-0 top-[42%] h-[72%] [perspective:900px]">
-        <div className="absolute inset-0 origin-top [transform:rotateX(76deg)]">
-          <div className="absolute inset-0 [background-image:linear-gradient(to_right,rgba(203,213,225,0.9)_1px,transparent_1px),linear-gradient(to_bottom,rgba(203,213,225,0.85)_1px,transparent_1px)] [background-size:64px_64px] animate-[magic-retro-grid_12s_linear_infinite]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/10 to-white" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background/70" />
+      <div className="absolute inset-x-0 top-[47%] h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      <div className="absolute inset-x-0 bottom-[-32%] h-[120%] [perspective:340px]">
+        <div className="absolute inset-0 origin-top [transform:rotateX(var(--retro-grid-angle))]">
+          <div
+            className="absolute inset-0 animate-[magic-retro-grid_15s_linear_infinite] [background-image:linear-gradient(to_right,var(--retro-grid-light)_1px,transparent_0),linear-gradient(to_bottom,var(--retro-grid-light)_1px,transparent_0)] [background-size:var(--retro-grid-cell-size)_var(--retro-grid-cell-size)] dark:[background-image:linear-gradient(to_right,var(--retro-grid-dark)_1px,transparent_0),linear-gradient(to_bottom,var(--retro-grid-dark)_1px,transparent_0)]"
+            style={{ opacity }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
         </div>
       </div>
-      <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white via-white/80 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-[52%] bg-gradient-to-b from-background via-background/95 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background via-background/85 to-transparent" />
     </div>
   );
 }
