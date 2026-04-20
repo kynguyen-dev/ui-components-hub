@@ -96,6 +96,8 @@
   --animate-aurora: aurora 8s ease-in-out infinite alternate;
   --animate-shiny-text: shiny-text 8s infinite;
   --animate-gradient: gradient 8s linear infinite;
+  --animate-marquee: marquee var(--duration, 40s) linear infinite;
+  --animate-marquee-vertical: marquee-vertical var(--duration, 40s) linear infinite;
   @keyframes blink-cursor {
   0%, 49% {
     opacity: 1;}
@@ -130,6 +132,16 @@
   @keyframes gradient {
   to {
     background-position: var(--bg-size, 300%) 0;}}
+  @keyframes marquee {
+  from {
+    transform: translateX(0);}
+  to {
+    transform: translateX(calc(-100% - var(--gap, 1rem)));}}
+  @keyframes marquee-vertical {
+  from {
+    transform: translateY(0);}
+  to {
+    transform: translateY(calc(-100% - var(--gap, 1rem)));}}
   --animate-background-position-spin: background-position-spin 3000ms infinite alternate;
   @keyframes background-position-spin {
   0% {
